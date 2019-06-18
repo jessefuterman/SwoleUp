@@ -34,12 +34,7 @@ class List extends Component {
   timerZero = () => {};
 
   momentTimer = () => {
-    setInterval(() => {
-      let date = moment().format("HH:mm:ss");
-
-      console.log(date, "this is date");
-      this.setState({ date: date });
-    }, 1000);
+    
   };
 
   componentDidUpdate = previousProps => {
@@ -53,6 +48,16 @@ class List extends Component {
     this.setState({ list: del });
     this.props.pass(del);
   };
+  
+  componentDidMount = () => {
+
+    setInterval(() => {
+      let date = moment().format("HH:mm:ss");
+
+      console.log(date, "this is date");
+      this.setState({ date: date });
+    }, 1000);
+  }
 
   render() {
     return (
