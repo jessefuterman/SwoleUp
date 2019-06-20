@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import moment from "moment";
-import ProgressBar from "./component/ProgressBar.js";
+import ProgressBar from "./ProgressBar";
 
 class List extends Component {
   constructor(props) {
