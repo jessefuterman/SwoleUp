@@ -1,6 +1,12 @@
 .App {
   text-align: center;
 }
+.Dropdown-menu {
+  position: absolute;
+  
+  left: 5;
+  display: flex;
+}
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
@@ -8,11 +14,25 @@
   pointer-events: none;
 }
 
+.filler{
+background: #1da598;
+height: 100%;
+border-radius: inherit;
+transition: width .2 ease-in;
+}
+.progress-bar{
+position: relative;
+height: 20px;
+width: 350px;
+border-radius: 50px;
+border: 1px solid #333
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  
+ 
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
@@ -24,7 +44,9 @@
 }
 
 .Time-place {
-  position: flex
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 @keyframes App-logo-spin {

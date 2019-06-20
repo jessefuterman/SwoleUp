@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import List from "./List.js";
-import moment from "moment";
 
 
 class Todo extends Component {
@@ -26,7 +25,6 @@ class Todo extends Component {
       items: [...this.state.items, this.state.text]
     });
     console.log(this.state, "this is state");
-    console.log(moment().toNow(), "this is moment js from now");
   };
 
   render() {

@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import moment from "moment";
+import ProgressBar from "./component/ProgressBar.js";
+
 class List extends Component {
   constructor(props) {
     super(props);
@@ -23,18 +25,10 @@ class List extends Component {
           >
             remove
           </button>{" "}
-          <button onClick={this.momentTimer}>timer</button>
         </li>
-       
       ));
       return mapOne;
     }
-  };
-
-  timerZero = () => {};
-
-  momentTimer = () => {
-    
   };
 
   componentDidUpdate = previousProps => {
@@ -48,24 +42,43 @@ class List extends Component {
     this.setState({ list: del });
     this.props.pass(del);
   };
-  
-  componentDidMount = () => {
 
+  ProgressBar = props => {
+    return (
+      <div className="progress-bar">
+        <filler percentage={props.percentage}> </filler>
+      </div>
+    );
+  };
+
+  Filler = props => {
+    return <div className="filler" style={{ width: `${props.percentage}%` }} />;
+  };
+
+  componentDidMount = () => {
     setInterval(() => {
       let date = moment().format("HH:mm:ss");
 
       console.log(date, "this is date");
       this.setState({ date: date });
     }, 1000);
-  }
+  };
 
   render() {
     return (
       <div>
         <ul>{this.lify()}</ul>
-        <ul>{this.state.date} </ul>
+        <ul className="Time-place">{this.state.date} </ul>
         <div>
-          
+          <select className="Dropdown-menu">
+            <option value="grapefruit">Bicep</option>
+            <option value="lime">Tricep</option>
+            <option selected value="coconut">
+              Shoulder
+            </option>
+            <option value="mango">Back</option>
+          </select>
+          <ProgressBar />
         </div>
       </div>
     );

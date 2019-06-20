@@ -1,5 +1,5 @@
-import React, {Component} from "react";
-import List from "./component/List.js"
+import React, { Component } from "react";
+
 import "./App.css";
 import Todo from "./component/Todo.js";
 
@@ -8,10 +8,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          
           <Todo> </Todo>
-          
-       <List> </List>
         </header>
       </div>
     );
@@ -19,5 +16,3 @@ class App extends Component {
 }
 
 export default App;
-
-
