@@ -53,9 +53,15 @@ class Input extends Component {
       text: "",
       items: [...this.state.items, this.state.text]
     });
+  };
+
+  triggerWorkout = () => {
+    if (this.state.selectedOption === "") {
+      
+    }
+    
     if (this.state.selectedOption === "Back") {
       this.backOrder();
-      this.mapBrain();
     }
     if (this.state.selectedOption === "Chest") {
       this.chestOrder();
@@ -67,7 +73,7 @@ class Input extends Component {
       this.shoulderOrder();
     }
     if (this.state.selectedOption === "bicep") {
-      this.bicepOrder();
+      this.bicepOrder()
     }
     if (this.state.selectedOption === "tricep") {
       this.tricepOrder();
@@ -150,11 +156,6 @@ class Input extends Component {
     });
   };
 
-  mapBrain = () => {
-    console.log("we in map!?")
-    this.state.workouts.Back.map(x =>(<input value={this.state.text} onChange={this.onChange} />));
-  };
-
   onChange = event => {
     event.preventDefault();
     this.setState({ text: event.target.value });
@@ -166,6 +167,7 @@ class Input extends Component {
 
   handleChange = event => {
     this.setState({ selectedOption: event.target.value });
+    this.triggerWorkout()
     console.log(event.target.value, "what is this event target value");
   };
 
@@ -177,8 +179,9 @@ class Input extends Component {
             value={this.state.selectedOption}
             className="Dropdown-menu"
             onChange={this.handleChange}
+           
           >
-            {" "}
+           
             <option value="" />
             <option value="bicep">Bicep</option>
             <option value="tricep">Tricep</option>
