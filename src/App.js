@@ -1,15 +1,23 @@
 import React, { Component } from "react";
 
 import "./App.css";
-import Todo from "./component/Todo.js";
+import Header from "./component/Header.js";
+import Input from "./component/Input.js";
+import List from "./component/List.js";
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      items: []
+    };
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <Todo> </Todo>
-        </header>
+        <Header></Header>
+        <Input />
       </div>
     );
   }

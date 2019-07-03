@@ -1,11 +1,8 @@
 .App {
   text-align: center;
-}
-.Dropdown-menu {
-  position: absolute;
-  
-  left: 5;
-  display: flex;
+  background-color: #282c34;
+  height: 100vh;
+  padding: 0 15px;
 }
 
 .App-logo {
@@ -14,27 +11,26 @@
   pointer-events: none;
 }
 
-.filler{
-background: #1da598;
-height: 100%;
-border-radius: inherit;
-transition: width .2 ease-in;
+.filler {
+  background: #98a166;
+  height: 100%;
+  border-radius: inherit;
+  transition: width.2 ease-in;
 }
-.progress-bar{
-position: relative;
-height: 20px;
-width: 350px;
-border-radius: 50px;
-border: 1px solid #333
+.progress-bar {
+  position: relative;
+  height: 20px;
+  width: 350px;
+  border-radius: 50px;
+  border: 1px solid rgb(156, 138, 138);
 }
 
 .App-header {
+  display: flex;
   background-color: #282c34;
-  min-height: 100vh;
-  
- 
+  height: 80px;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   font-size: calc(10px + 2vmin);
   color: white;
 }
@@ -43,17 +39,32 @@ border: 1px solid #333
   color: #61dafb;
 }
 
-.Time-place {
-  position: absolute;
-  top: 0;
-  right: 0;
+.To-do-list-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.To-do-list-input form input {
+  margin: 0 20px;
+}
+
+.Dropdown-menu {
+  height: 17px;
+}
+
+.task-list ul li {
+  display: inline-block;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+}
+.task-list ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0px;
+  max-width: 300px;
+  margin: 50px auto;
 }

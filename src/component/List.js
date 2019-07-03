@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import moment from "moment";
-import ProgressBar from "./ProgressBar";
+// import moment from "moment";
+// import ProgressBarExample from "./ProgressBarExample.js";
 
 class List extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      list: this.props.greeting,
-      date: ""
+      items: [],
+      list: this.props.greeting
     };
     console.log(this.state.date, "the state");
   }
@@ -16,7 +16,6 @@ class List extends Component {
     if (this.state.list !== undefined) {
       let mapOne = this.state.list.map(x => (
         <li>
-          {" "}
           {x}
           <button
             onClick={() => {
@@ -24,7 +23,7 @@ class List extends Component {
             }}
           >
             remove
-          </button>{" "}
+          </button>
         </li>
       ));
       return mapOne;
@@ -33,6 +32,7 @@ class List extends Component {
 
   componentDidUpdate = previousProps => {
     if (this.props !== previousProps) {
+      console.log(this.props);
       this.setState({ list: this.props.greeting });
     }
   };
@@ -43,43 +43,10 @@ class List extends Component {
     this.props.pass(del);
   };
 
-  ProgressBar = props => {
-    return (
-      <div className="progress-bar">
-        <filler percentage={props.percentage}> </filler>
-      </div>
-    );
-  };
-
-  Filler = props => {
-    return <div className="filler" style={{ width: `${props.percentage}%` }} />;
-  };
-
-  componentDidMount = () => {
-    setInterval(() => {
-      let date = moment().format("HH:mm:ss");
-
-      console.log(date, "this is date");
-      this.setState({ date: date });
-    }, 1000);
-  };
-
   render() {
     return (
-      <div>
+      <div className="task-list">
         <ul>{this.lify()}</ul>
-        <ul className="Time-place">{this.state.date} </ul>
-        <div>
-          <select className="Dropdown-menu">
-            <option value="grapefruit">Bicep</option>
-            <option value="lime">Tricep</option>
-            <option selected value="coconut">
-              Shoulder
-            </option>
-            <option value="mango">Back</option>
-          </select>
-          <ProgressBar />
-        </div>
       </div>
     );
   }
