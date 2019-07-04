@@ -57,9 +57,8 @@ class Input extends Component {
 
   triggerWorkout = () => {
     if (this.state.selectedOption === "") {
-      
     }
-    
+
     if (this.state.selectedOption === "Back") {
       this.backOrder();
     }
@@ -73,7 +72,7 @@ class Input extends Component {
       this.shoulderOrder();
     }
     if (this.state.selectedOption === "bicep") {
-      this.bicepOrder()
+      this.bicepOrder();
     }
     if (this.state.selectedOption === "tricep") {
       this.tricepOrder();
@@ -84,7 +83,6 @@ class Input extends Component {
     this.setState({
       text: "",
       items: [
-        ...this.state.items,
         this.state.workouts.Tricep[0],
         this.state.workouts.Tricep[1],
         this.state.workouts.Tricep[2],
@@ -97,7 +95,6 @@ class Input extends Component {
     this.setState({
       text: "",
       items: [
-        ...this.state.items,
         this.state.workouts.Bicep[0],
         this.state.workouts.Bicep[1],
         this.state.workouts.Bicep[2]
@@ -109,7 +106,6 @@ class Input extends Component {
     this.setState({
       text: "",
       items: [
-        ...this.state.items,
         this.state.workouts.Back[0],
         this.state.workouts.Back[1],
         this.state.workouts.Back[2],
@@ -122,7 +118,6 @@ class Input extends Component {
     this.setState({
       text: "",
       items: [
-        ...this.state.items,
         this.state.workouts.Chest[0],
         this.state.workouts.Chest[1],
         this.state.workouts.Chest[2],
@@ -135,7 +130,6 @@ class Input extends Component {
     this.setState({
       text: "",
       items: [
-        ...this.state.items,
         this.state.workouts.Legs[0],
         this.state.workouts.Legs[1],
         this.state.workouts.Legs[2],
@@ -148,7 +142,6 @@ class Input extends Component {
     this.setState({
       text: "",
       items: [
-        ...this.state.items,
         this.state.workouts.Shoulder[0],
         this.state.workouts.Shoulder[1],
         this.state.workouts.Shoulder[2]
@@ -168,8 +161,8 @@ class Input extends Component {
   handleChange = event => {
     this.setState({ selectedOption: event.target.value }, () =>
       this.triggerWorkout()
-    )
-  }
+    );
+  };
 
   render() {
     return (
@@ -179,9 +172,7 @@ class Input extends Component {
             value={this.state.selectedOption}
             className="Dropdown-menu"
             onChange={this.handleChange}
-           
           >
-           
             <option value="" />
             <option value="bicep">Bicep</option>
             <option value="tricep">Tricep</option>
