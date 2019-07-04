@@ -166,10 +166,10 @@ class Input extends Component {
   };
 
   handleChange = event => {
-    this.setState({ selectedOption: event.target.value });
-    this.triggerWorkout()
-    console.log(event.target.value, "what is this event target value");
-  };
+    this.setState({ selectedOption: event.target.value }, () =>
+      this.triggerWorkout()
+    )
+  }
 
   render() {
     return (
