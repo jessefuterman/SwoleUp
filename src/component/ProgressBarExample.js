@@ -9,13 +9,7 @@ class ProgressBarExample extends Component {
     };
   }
 
-  ProgressBar = () => {
-    return (
-      <div className="progress-bar">
-        <this.Filler percentage={this.state.percentage}>  </this.Filler>
-      </div>
-    );
-  };
+  
 
   Filler = () => {
     
@@ -45,8 +39,9 @@ JuiceFill = () => {
         
         <div>
         
-        <this.ProgressBar percentage = {this.state.percentage}></this.ProgressBar>
-        
+        <div className="progress-bar">
+        <this.Filler percentage={this.state.percentage}>  </this.Filler>
+      </div>
         </div>
 
         
