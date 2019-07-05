@@ -17,7 +17,7 @@ class Input extends Component {
         ],
         Chest: [
           "Benchpress",
-          "Chest Fly",
+          "Chest-Fly-Press",
           "Incline Chest Press",
           "Decline Chest Press"
         ],
@@ -30,8 +30,8 @@ class Input extends Component {
         ],
         Tricep: [
           "Skull Crushers",
-          "French Press",
-          "Tricep Press",
+          "French Press ",
+          "Tricep Press ",
           "Rope Tricep Pushdown"
         ],
         Back: [
@@ -163,6 +163,7 @@ class Input extends Component {
       this.triggerWorkout()
     );
   };
+
 
   render() {
     return (

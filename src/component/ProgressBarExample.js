@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import List from "./List"
 
 class ProgressBarExample extends Component {
   constructor(props) {
@@ -11,14 +12,31 @@ class ProgressBarExample extends Component {
   ProgressBar = () => {
     return (
       <div className="progress-bar">
-        <this.Filler percentage={this.state.percentage}> </this.Filler>
+        <this.Filler percentage={this.state.percentage}>  </this.Filler>
       </div>
     );
   };
 
   Filler = () => {
+    
+    
     return <div className="filler" style={{ width:`${this.state.percentage}%` }} />;
   }; 
+
+
+JuiceFill = () => {
+  
+  
+
+}
+
+ 
+  
+  
+
+
+
+  
  
   
   

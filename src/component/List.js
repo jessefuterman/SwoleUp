@@ -7,7 +7,8 @@ class List extends Component {
     super(props);
     this.state = {
       items: [],
-      list: this.props.greeting
+      list: this.props.greeting,
+      percentage: 0
     };
     console.log(this.state.date, "the state");
   }
@@ -22,8 +23,20 @@ class List extends Component {
               this.handleDelete(x);
             }}
           >
-            remove
+            Remove
           </button>
+          
+          <button onClick={() => {
+            this.handleSubmit(x)
+           }} 
+           >
+           Add Workout
+           
+           </button>
+          
+          
+          
+         
         </li>
       ));
       return mapOne;
@@ -43,10 +56,18 @@ class List extends Component {
     this.props.pass(del);
   };
 
+  handleSubmit = () => {
+  console.log("does it work jerk?!")
+  let add = 5
+  this.setState({ percentage: add });
+  this.props.juice(add);
+  }
+
   render() {
     return (
       <div className="task-list">
         <ul>{this.lify()}</ul>
+        
       </div>
     );
   }
