@@ -5,7 +5,7 @@ class ProgressBarExample extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      percentage: 0
+      percentage: 10
     };
   }
 
@@ -40,7 +40,9 @@ JuiceFill = () => {
         <div>
         
         <div className="progress-bar">
-        <this.Filler percentage={this.state.percentage}>  </this.Filler>
+        <this.Filler>  </this.Filler>
+      </div>
+      <div>
       </div>
         </div>
 
