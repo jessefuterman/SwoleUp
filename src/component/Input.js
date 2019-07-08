@@ -11,9 +11,9 @@ class Input extends Component {
       items: [],
       workouts: {
         Shoulder: [
-          "Overhead Press",
-          "Front Barbell Raise",
-          "Seated Rear Delt Raise"
+          "Overhead Press ",
+          "Front Barbell Raise ",
+          "Seated Rear Delt Raise "
         ],
         Chest: [
           "Benchpress",
@@ -37,10 +37,12 @@ class Input extends Component {
         Back: [
           "Pull-Up",
           "Dumbell Single Arm Row",
-          "Inverted Rows",
-          "Lat Pull-Downs"
+          "Inverted Rows w Dumbell",
+          "Lat Pull-Downs w Dumbell"
         ],
-        Bicep: ["Bicep Curl", "Hammer Curl", "Preacher Curl"]
+        Bicep: ["Bicep Curl", "Hammer Curl", "Preacher Curl"],
+        PersonalList: [""],
+        
       },
       selectedOption: ""
     };
@@ -164,7 +166,6 @@ class Input extends Component {
     );
   };
 
-
   render() {
     return (
       <div>
@@ -183,6 +184,7 @@ class Input extends Component {
             <option value="Back">Back</option>
             <option value="Chest">Chest</option>
             <option value="Leg">Leg</option>
+            <option value="PersonalWorkout">Personal Workout List</option>
           </select>
           <form onSubmit={this.onSubmit}>
             <input value={this.state.text} onChange={this.onChange} />

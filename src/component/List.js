@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 // import moment from "moment";
-// import ProgressBarExample from "./ProgressBarExample.js";
+ import ProgressBarExample from "./ProgressBarExample.js";
 
 class List extends Component {
   constructor(props) {
@@ -10,7 +10,7 @@ class List extends Component {
       list: this.props.greeting,
       percentage: 0
     };
-    console.log(this.state.date, "the state");
+    console.log(this.state.percentage, "the state percentage");
   }
 
   lify = event => {
@@ -18,22 +18,16 @@ class List extends Component {
       let mapOne = this.state.list.map(x => (
         <li>
           {x}
-          <button
-            onClick={() => {
-              this.handleDelete(x);
-            }}
-          >
-            Remove
-          </button>
-          
-          <button onClick={() => {
+          <button  className ="button" onClick={() => {
             this.handleSubmit(x)
-           }} 
-           >
-           Add Workout
-           
-           </button>
+           }}>
+            Complete Excercise
+          </button>
+         
           
+         
+          
+           
           
           
          
@@ -50,24 +44,27 @@ class List extends Component {
     }
   };
   handleDelete = str => {
-    console.log("aa");
-    let del = this.state.list.filter(x => x !== str);
-    this.setState({ list: del });
-    this.props.pass(del);
+  
   };
 
-  handleSubmit = () => {
+  handleSubmit = (str) => {
   console.log("does it work jerk?!")
-  let add = 5
-  this.setState({ percentage: add });
-  this.props.juice(add);
+  this.setState((prevState, props) => ({
+    percentage: this.state.percentage + 1
+})); 
+  console.log(this.state.percentage, "Set what!?")
+  console.log("aa");
+  let del = this.state.list.filter(x => x !== str);
+  this.setState({ list: del });
+  this.props.pass(del);
   }
 
   render() {
     return (
       <div className="task-list">
         <ul>{this.lify()}</ul>
-        
+        <div className="App-header"></div>
+        <ProgressBarExample pass = {this.state.percentage}></ProgressBarExample>
       </div>
     );
   }
