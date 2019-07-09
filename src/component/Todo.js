@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import List from "./List.js";
 
-
 class Todo extends Component {
   constructor(props) {
     super(props);
@@ -10,7 +9,7 @@ class Todo extends Component {
       text: ""
     };
   }
-  getmodifiedArray = arr => {
+  getModifiedArray = arr => {
     this.setState({ items: arr });
   };
 
@@ -24,7 +23,6 @@ class Todo extends Component {
       text: "",
       items: [...this.state.items, this.state.text]
     });
-    console.log(this.state, "this is state");
   };
 
   render() {
@@ -37,7 +35,7 @@ class Todo extends Component {
               <button type="submit"> Add Task </button>
             </form>
             <div>
-              <List greeting={this.state.items} pass={this.getmodifiedArray} />
+              <List passItem={this.state.items} pass={this.Array} />
             </div>
           </div>
         </div>

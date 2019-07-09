@@ -46,7 +46,7 @@ class Input extends Component {
       },
       selectedOption: ""
     };
-    console.log(this.state.selectedOption, "which one is selected in state?!");
+    console.log(this.state.selectedOption, "what is selected")
   }
 
   onSubmit = event => {
@@ -156,7 +156,7 @@ class Input extends Component {
     this.setState({ text: event.target.value });
   };
 
-  getmodifiedArray = arr => {
+  getModifiedArray = arr => {
     this.setState({ items: arr });
   };
 
@@ -191,12 +191,11 @@ class Input extends Component {
             <button type="submit"> Add Task </button>
           </form>
         </div>
-        <List greeting={this.state.items} pass={this.getmodifiedArray} />
+        <List passItem={this.state.items} pass={this.getModifiedArray} passExcerciseBicep ={this.state.selectedOption} passExcerciseShoulder = {this.state.workouts.Shoulder} passExcerciseBack = {this.state.workouts.back}/>
       </div>
     );
   }
 }
 
-// <List greeting={this.state.items} pass={this.getmodifiedArray} />
 
 export default Input;

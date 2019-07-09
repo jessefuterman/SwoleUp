@@ -1,27 +1,62 @@
 import React, { Component } from "react";
 // import moment from "moment";
  import ProgressBarExample from "./ProgressBarExample.js";
+ import Modal from 'react-responsive-modal';
+
 
 class List extends Component {
   constructor(props) {
     super(props);
     this.state = {
       items: [],
-      list: this.props.greeting,
-      percentage: 0
+      list: this.props.passItem,
+      percentage: 0,
+      open: false,
+      excerciseInfoBicep: " Step 1: Stand up straight with a dumbbell in each hand, holding them alongside you. Your palms should face your body. Keep your feet hip-width apart and engage your core to stabilize the body. Step 2: Keep your biceps stationary and start bending at your elbows, lifting both dumbbells. Step 3:Lift until the dumbbells reach shoulder-level, but don’t actually touch your shoulders. Hold this contraction briefly, then lower back to the starting position and repeat.",
+      workouts: [this.props.passExcerciseBicep, this.props.passExcerciseShoulder, this.props.passExcerciseBack]
     };
-    console.log(this.state.percentage, "the state percentage");
+    console.log(this.state.workouts[0] ,"what teh fuck is this state")
+
+  
   }
+  onOpenModal = () => {
+    this.setState({ open: true });
+  };
+ 
+  onCloseModal = () => {
+    this.setState({ open: false });
+  };
+
+  infoLogic = () => {
+   if(this.state.workouts[0] === "b"){
+    return this.state.excerciseInfoBicep[0]
+   
+   }
+    
+
+  }
+
+
+
 
   lify = event => {
     if (this.state.list !== undefined) {
-      let mapOne = this.state.list.map(x => (
+      let mapOne = this.state.list.map(elem => (
         <li>
-          {x}
-          <button  className ="button" onClick={() => {
-            this.handleSubmit(x)
+          {elem}
+          <h1>
+          </h1>
+          <button  className ="buttonTwo" onClick={() => {
+            this.handleSubmit(elem)
            }}>
             Complete Excercise
+          </button>
+          <h1>
+          </h1>
+          <button  className ="button" onClick={() => {
+            this.onOpenModal(elem)
+           }}>
+               Info
           </button>
          
           
@@ -39,32 +74,38 @@ class List extends Component {
 
   componentDidUpdate = previousProps => {
     if (this.props !== previousProps) {
-      console.log(this.props);
-      this.setState({ list: this.props.greeting });
+      this.setState({workouts: this.props.passExcerciseBicep[0]})  
+      this.setState({ list: this.props.passItem });
     }
   };
-  handleDelete = str => {
-  
-  };
+ 
 
   handleSubmit = (str) => {
-  console.log("does it work jerk?!")
+  
   this.setState((prevState, props) => ({
     percentage: this.state.percentage + 1
 })); 
-  console.log(this.state.percentage, "Set what!?")
-  console.log("aa");
+ 
   let del = this.state.list.filter(x => x !== str);
   this.setState({ list: del });
   this.props.pass(del);
   }
 
   render() {
+    const { open } = this.state;
+
     return (
       <div className="task-list">
         <ul>{this.lify()}</ul>
         <div className="App-header"></div>
         <ProgressBarExample pass = {this.state.percentage}></ProgressBarExample>
+    
+      
+      
+      <Modal open={open} onClose={this.onCloseModal} center>
+        <h2>{this.infoLogic()}</h2>
+      </Modal>
+      
       </div>
     );
   }
