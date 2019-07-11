@@ -5,16 +5,22 @@
   padding: 0 15px;
 }
 
+.Number-Animate {
+visibility: visible;
+
+}
+
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 40vmin;
   pointer-events: none;
 }
 .button {
-  background: #3498db;
-  width: 25px;
-  padding: 3px 0;
-  right: 170px ;
+  background: grey;
+  width: 16px;
+  height: 4vh;
+  padding: 0px 0;
+  right: 600px ;
   
   
   align-items: center;
@@ -28,14 +34,15 @@
  
   
   transform: translateX(-50%) translateY(-50%);
-  border-radius: 1px;  }
+  border-radius: 10px;  }
 
 
   .buttonTwo {
     background: #3498db;
-  width: 60px;
+  width: 50px;
   padding: 3px 0;
-  right: 200px;
+  right:500px;
+  font-size: 8px;
   
   
   align-items: center;
@@ -85,7 +92,8 @@
 }
 
 .Dropdown-menu {
-  height: 17px;
+  height: 20px;
+ 
 }
 
 .task-list ul li {
@@ -96,10 +104,71 @@
   margin-top: 25px;
 }
 .task-list ul {
-  display: flex;
+  
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   padding: 0px;
   max-width: 300px;
-  margin: 50px auto;
+  margin: auto;
+  left: 500px;
+  display: inline;
 }
+
+.rotate:hover
+{
+        -webkit-transform: rotateZ(-45deg);
+        -ms-transform: rotateZ(-45deg);
+        transform: rotateZ(-45deg);
+}
+.vidya{
+  font-family: 'Press Start 2P', cursive;
+color: pink;
+width: 20px;
+display: flex-end;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  position: relative;
+  left: 500px;
+  font-size: 50px;
+  
+  animation-name: spin;
+  animation-duration: 1000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear; 
+  /* transform: rotate(3deg); */
+   /* transform: rotate(0.3rad);/ */
+   /* transform: rotate(3grad); */ 
+   /* transform: rotate(.03turn);  */
+}
+
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
+
+
+.nes-progress {
+  width: 100%;
+  height: 48px;
+  padding: 4px;
+  margin: 4px;
+  color: #212529;
+  background-color: #fff;
+  box-shadow: 4px 0, -4px 0, 0 4px, 0 -4px;
+  -webkit-appearance: none;
+  appearance: none;
+
+  
+  
+}
+
+.modal {
+font-size: 15px
+}
+
+

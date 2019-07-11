@@ -30,9 +30,9 @@ class Input extends Component {
         ],
         Tricep: [
           "Skull Crushers",
-          "French Press ",
-          "Tricep Press ",
-          "Rope Tricep Pushdown"
+          "French Press",
+          "Tricep Press",
+          "Rope Tricep Pushdown",
         ],
         Back: [
           "Pull-Up",
@@ -46,7 +46,7 @@ class Input extends Component {
       },
       selectedOption: ""
     };
-    console.log(this.state.selectedOption, "what is selected")
+    console.log(this.state.items, "what is items")
   }
 
   onSubmit = event => {

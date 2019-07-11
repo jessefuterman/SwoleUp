@@ -1,5 +1,19 @@
 import React, { Component } from "react";
 import List from "./List"
+import classNames from "classnames";
+
+export interface ProgressProps {
+  style?: any;
+  value: number;
+  max: number;
+  primary?: boolean;
+  success?: boolean;
+  warning?: boolean;
+  error?: boolean;
+  pattern?: boolean;
+  className?: string
+}
+
 
 class ProgressBarExample extends Component {
   constructor(props) {
@@ -8,9 +22,10 @@ class ProgressBarExample extends Component {
  percentage:  this.props.pass     
 
     }
- 
+    console.log(this.props.pass, "this is my props")
   }
   
+
   
   
   
@@ -37,7 +52,7 @@ class ProgressBarExample extends Component {
         <div className="filler" style={{ width:`${this.state.percentage}%` }} />
       </div>
       <div>
-      
+      <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet"></link>
       </div>
         </div>
 
