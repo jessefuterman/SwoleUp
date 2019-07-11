@@ -2,17 +2,6 @@ import React, { Component } from "react";
 import List from "./List"
 import classNames from "classnames";
 
-export interface ProgressProps {
-  style?: any;
-  value: number;
-  max: number;
-  primary?: boolean;
-  success?: boolean;
-  warning?: boolean;
-  error?: boolean;
-  pattern?: boolean;
-  className?: string
-}
 
 
 class ProgressBarExample extends Component {
@@ -32,7 +21,7 @@ class ProgressBarExample extends Component {
   componentDidUpdate = previousProps => {
     if (this.props !== previousProps) {
      
-      this.setState({ percentage: this.props.pass + 1 });
+      this.setState({ percentage: this.props.pass });
     }
   };
   

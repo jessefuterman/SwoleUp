@@ -4,7 +4,8 @@ class Header extends Component {
     constructor () {
         super()
         this.state = {
-            date: ""
+            date: "",
+           
         }
     }
 
@@ -13,7 +14,7 @@ class Header extends Component {
   render() {
     return (
       <div className="App-header">
-       
+      
        
       </div>
     );

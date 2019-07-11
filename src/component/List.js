@@ -46,7 +46,8 @@ class List extends Component {
       },
       elem: "",
       
-      switch: true
+      switch: true,
+      titles: ["Level 1: LIL LIFTER", "MEDIUM LIFTER", "OPA GAIN NAM STYLE", "BIG LIFTER"],
     
     };
     console.log(this.state.items, "what is items");
@@ -92,6 +93,7 @@ class List extends Component {
             onClick={() => {
               this.handleSubmit(elem);
               this.handleExperience(elem)
+              this.setState({ elem: elem });
               console.log(elem, "what is elem");
             }}
           >
@@ -118,7 +120,8 @@ class List extends Component {
    if(this.state.switch === false){
     return     <h1 className = "vidya"> !!5XP!!</h1>
     
-   }
+  }
+   
   }
 
   componentDidUpdate = previousProps => {
@@ -128,14 +131,14 @@ class List extends Component {
         list: this.props.passItem
       });
     }
-    if(this.state.switch === false){
+    if(this.state.switch === false ){
     setTimeout(() => this.setState({ switch: true}), 1000) 
     }
   };
 
   handleSubmit = str => {
     this.setState((prevState, props) => ({
-      percentage: this.state.percentage + 1,
+      percentage: this.state.percentage + 5,
       list: del,
       switch: false
     }));
@@ -152,8 +155,10 @@ class List extends Component {
     const { open } = this.state;
 
     return (
+     
       <div className="task-list">
         <ul>{this.lify()}</ul>
+       
         <div className="App-header" />
         <ProgressBarExample pass={this.state.percentage} />
 
@@ -161,7 +166,9 @@ class List extends Component {
           <h2 className = "modal">{this.infoLogic()}</h2>
         </Modal>
       <h1>{this.handleExperience()}</h1>
+      <div className ="titles"> {this.state.titles[0]}</div>
       </div>
+      
     );
   }
 }

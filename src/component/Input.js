@@ -186,10 +186,7 @@ class Input extends Component {
             <option value="Leg">Leg</option>
             <option value="PersonalWorkout">Personal Workout List</option>
           </select>
-          <form onSubmit={this.onSubmit}>
-            <input value={this.state.text} onChange={this.onChange} />
-            <button type="submit"> Add Task </button>
-          </form>
+         
         </div>
         <List passItem={this.state.items} pass={this.getModifiedArray} passExcerciseBicep ={this.state.selectedOption} passExcerciseShoulder = {this.state.workouts.Shoulder} passExcerciseBack = {this.state.workouts.back}/>
       </div>
