@@ -28,6 +28,7 @@ class List extends Component {
     this.state = {
       items: [],
       list: this.props.passItem,
+      hiddenpercentage: 0,
       percentage: 0,
       open: false,
       modalText: {
@@ -47,10 +48,10 @@ class List extends Component {
       elem: "",
       
       switch: true,
-      titles: ["Level 1: LIL LIFTER", "MEDIUM LIFTER", "OPA GAIN NAM STYLE", "BIG LIFTER"],
+      titles: ["Level 1: LIL LIFTER","Level 2: GAINING", "LEVEL 3:", "BIG LIFTER"],
     
     };
-    console.log(this.state.items, "what is items");
+  
   }
   onOpenModal = elem => {
     this.setState({ open: true });
@@ -125,29 +126,61 @@ class List extends Component {
   }
 
   componentDidUpdate = previousProps => {
+   
+    
     if (this.props !== previousProps) {
       this.setState({
         workouts: this.props.passExcerciseBicep,
         list: this.props.passItem
+
       });
     }
     if(this.state.switch === false ){
     setTimeout(() => this.setState({ switch: true}), 1000) 
     }
+   
   };
 
   handleSubmit = str => {
     this.setState((prevState, props) => ({
-      percentage: this.state.percentage + 5,
+      hiddenpercentage: this.state.hiddenpercentage + 25,
+      percentage: this.state.percentage + 25,
       list: del,
       switch: false
     }));
-    
+    //exp rules
+    if(this.state.percentage === 100){
+      console.log("does it go inside bitch")
+      this.setState({percentage: this.state.percentage * 0 })
+    }
+
+
     let del = this.state.list.filter(x => x !== str);
 
     this.props.pass(del);
   };
 
+  changeTitle = () => {
+    
+    
+   
+    
+   
+    if(this.state.hiddenpercentage > 100){
+     
+      return this.state.titles[1]
+   }if(this.state.hiddenpercentage > 200){
+     return "lala"
+   }if(this.state.hiddenpercentage > 300){
+     return this.state.titles[3]
+   }
+  
+  
+   return this.state.titles[0]
+   
+   
+
+  }
 
     
 
@@ -166,7 +199,7 @@ class List extends Component {
           <h2 className = "modal">{this.infoLogic()}</h2>
         </Modal>
       <h1>{this.handleExperience()}</h1>
-      <div className ="titles"> {this.state.titles[0]}</div>
+      <div className ="titles"> {this.changeTitle()}</div>
       </div>
       
     );
