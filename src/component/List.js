@@ -4,23 +4,16 @@ import ProgressBarExample from "./ProgressBarExample.js";
 import Modal from "react-responsive-modal";
 
 import {
-
   Button,
-
   Checkbox,
   TextInput,
   TextArea,
-  
   Balloon,
- 
   Table,
   Progress,
   Icon,
-  Sprite,
-  
+  Sprite
 } from "nes-react";
-
-
 
 class List extends Component {
   constructor(props) {
@@ -42,16 +35,21 @@ class List extends Component {
           "To perform the Skull Crusher excercise, sit up straight on a chair, bench or -- for an added balance challenge -- a stability ball. Place both feet flat on the floor and hold the dumbbells above your head. Your arms should be extended toward the ceiling -- but not locked -- with your palms facing each other. Bend your elbows to lower the weights slowly behind your head. As with the lying version, try to move your shoulders and upper arms as little as possible. Extend your arms upward to complete one repetition. Keep your head up, your abs tight and your back straight at all times.",
           "Set the cable machine up with the bar at head height. Grab the bar and stand upright with your back straight and your elbows tucked in to your sides. Stand with your feet hip-width apart, or place one in front of the other if it helps you balance. Pull the cable down until the bar touches your thighs and pause to squeeze your triceps at the bottom of the move. Then slowly raise the bar back to the starting position. Make sure you don’t lean forwards to aid the press and don’t let your elbows leave your sides, otherwise you’ll lose some of the focus on the triceps.",
           "Start by bracing your abdominals.Tuck your elbows in at your sides and position your feet slightly apart Inhale. Push down until your elbows are fully extended but not yet in the straight, locked position. Keep your elbows close to your body and bend your knees slightly on the pushdown. Resist bending forward. Try to keep your back as straight as possible as you push down. As you exhale, return to the starting point using a controlled movement. Try not to crash the weights.For beginners, aim to complete 4 sets of 8 reps"
-          
         ]
       },
       elem: "",
-      
+
       switch: true,
-      titles: ["Level 1: LIL LIFTER","Level 2: GAINING", "LEVEL 3:", "BIG LIFTER"],
-    
+      lvl2switch: true,
+      lvl3switch: true,
+      lvl4switch: true,
+      titles: [
+        "LVL 1: LIL LIFTER",
+        "LVL 2: GAINING ON YA",
+        "LVL 3: OPA GAIN NAM STYLE",
+        "LVL 4: BIG LIFTER"
+      ]
     };
-  
   }
   onOpenModal = elem => {
     this.setState({ open: true });
@@ -72,14 +70,16 @@ class List extends Component {
       return this.state.modalText.Bicep[2];
     }
     if (this.state.elem === "French Press") {
-      console.log("french press?");
       return this.state.modalText.Tricep[0];
-    }if(this.state.elem === "Skull Crushers"){
+    }
+    if (this.state.elem === "Skull Crushers") {
       return this.state.modalText.Tricep[1];
-    }if(this.state.elem === "Tricep Press"){
+    }
+    if (this.state.elem === "Tricep Press") {
       return this.state.modalText.Tricep[2];
-    }if(this.state.elem === "Rope Tricep Pushdown"){
-      return this.state.modalText.Tricep[3]
+    }
+    if (this.state.elem === "Rope Tricep Pushdown") {
+      return this.state.modalText.Tricep[3];
     }
   };
 
@@ -93,19 +93,19 @@ class List extends Component {
             className="buttonTwo"
             onClick={() => {
               this.handleSubmit(elem);
-              this.handleExperience(elem)
+              this.handleExperience(elem);
               this.setState({ elem: elem });
               console.log(elem, "what is elem");
             }}
           >
-          POWER UP
+            POWER UP
           </button>
 
           <button
             className="button"
             onClick={() => {
               this.onOpenModal(elem);
-              
+
               this.setState({ elem: elem });
             }}
           >
@@ -116,29 +116,42 @@ class List extends Component {
       return mapOne;
     }
   };
-  
+
   handleExperience = () => {
-   if(this.state.switch === false){
-    return     <h1 className = "vidya"> !!5XP!!</h1>
-    
-  }
-   
-  }
+    if (this.state.switch === false) {
+      return <h1 className="vidya"> !!10XP!!</h1>;
+    }
+  };
+
+  handleLevelup = () => {
+    if (this.state.lvl2switch === false) {
+      return <h1 className="levelup"> !SWOLE POWER LVL UP!</h1>;
+    }if (this.state.lvl3switch === false) {
+      return <h1 className="levelup"> !SWOLE ON SWOLE LVL UP!</h1>;
+    }if (this.state.lvl4switch === false) {
+      return <h1 className="levelup"> !!LVL UP!! U CANT CONTROL THE SWOLE !!LVL UP!!</h1>;
+    }
+  };
 
   componentDidUpdate = previousProps => {
-   
-    
     if (this.props !== previousProps) {
       this.setState({
         workouts: this.props.passExcerciseBicep,
         list: this.props.passItem
-
       });
     }
-    if(this.state.switch === false ){
-    setTimeout(() => this.setState({ switch: true}), 1000) 
+    if (this.state.switch === false) {
+      setTimeout(() => this.setState({ switch: true }), 1000);
     }
-   
+
+    if (this.state.lvl2switch === false) {
+      setTimeout(() => this.setState({ lvl2switch: true }), 1500);
+    }
+    if (this.state.lvl3switch === false) {
+      setTimeout(() => this.setState({ lvl3switch: true }), 1500);
+    }if (this.state.lvl4switch === false) {
+      setTimeout(() => this.setState({ lvl4switch: true }), 1500);
+    }
   };
 
   handleSubmit = str => {
@@ -149,11 +162,18 @@ class List extends Component {
       switch: false
     }));
     //exp rules
-    if(this.state.percentage === 100){
-      console.log("does it go inside bitch")
-      this.setState({percentage: this.state.percentage * 0 })
+    if (this.state.percentage === 100) {
+      this.setState({ percentage: this.state.percentage * 0 });
     }
-
+    if (this.state.hiddenpercentage === 350) {
+      this.setState({ lvl4switch: false });
+    }
+    if (this.state.hiddenpercentage === 225) {
+      this.setState({ lvl3switch: false });
+    }
+    if (this.state.hiddenpercentage === 100) {
+      this.setState({ lvl2switch: false });
+    }
 
     let del = this.state.list.filter(x => x !== str);
 
@@ -161,47 +181,40 @@ class List extends Component {
   };
 
   changeTitle = () => {
-    
-    
-   
-    
-   
-    if(this.state.hiddenpercentage > 100){
-     
-      return this.state.titles[1]
-   }if(this.state.hiddenpercentage > 200){
-     return "lala"
-   }if(this.state.hiddenpercentage > 300){
-     return this.state.titles[3]
-   }
-  
-  
-   return this.state.titles[0]
-   
-   
-
-  }
-
-    
+    if (this.state.hiddenpercentage >= 375) {
+      return this.state.titles[3];
+    }
+    if (this.state.hiddenpercentage >= 250) {
+      return this.state.titles[2];
+    }
+    if (this.state.hiddenpercentage >= 125) {
+      return this.state.titles[1];
+    }
+    return this.state.titles[0];
+  };
 
   render() {
     const { open } = this.state;
 
     return (
-     
       <div className="task-list">
         <ul>{this.lify()}</ul>
-       
-        <div className="App-header" />
-        <ProgressBarExample pass={this.state.percentage} />
 
-        <Modal  open={open}  onClose={this.onCloseModal} center>
-          <h2 className = "modal">{this.infoLogic()}</h2>
+        <div className="App-header" />
+        <ProgressBarExample
+          pass={this.state.percentage}
+          passHidden={this.state.hiddenpercentage}
+        />
+
+        <Modal open={open} onClose={this.onCloseModal} center>
+          <h2 className="modal">{this.infoLogic()}</h2>
         </Modal>
-      <h1>{this.handleExperience()}</h1>
-      <div className ="titles"> {this.changeTitle()}</div>
+        <div>
+          <h1>{this.handleLevelup()}</h1>
+          <h1>{this.handleExperience()}</h1>
+        </div>
+        <div className="titles"> {this.changeTitle()}</div>
       </div>
-      
     );
   }
 }

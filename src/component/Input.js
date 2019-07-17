@@ -11,9 +11,9 @@ class Input extends Component {
       items: [],
       workouts: {
         Shoulder: [
-          "Overhead Press ",
-          "Front Barbell Raise ",
-          "Seated Rear Delt Raise "
+          "Overhead Press",
+          "Front Barbell Raise",
+          "Seated Rear Delt Raise"
         ],
         Chest: [
           "Benchpress",
@@ -41,7 +41,7 @@ class Input extends Component {
           "Lat Pull-Downs w Dumbell"
         ],
         Bicep: ["Bicep Curl", "Hammer Curl", "Preacher Curl"],
-        PersonalList: [""],
+       
         
       },
       selectedOption: ""

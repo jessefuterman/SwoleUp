@@ -41,14 +41,14 @@ visibility: visible;
   .buttonTwo {
     background: #3498db;
   width: 50px;
-  padding: 3px 0;
+  padding: 4px 0;
   right:780px;
   font-size: 8px;
+ 
+  position: fixed;
   
   
-  
-  
-  position: absolute;
+ 
   
   
  
@@ -66,7 +66,7 @@ visibility: visible;
   left: 900px;
   transform: rotate(270deg);
   height: 40px;
-  top: 150px;
+  top: 140px;
   width: 300px;
   border-radius: 50px;
   border: 1px solid rgb(156, 138, 138);
@@ -100,7 +100,8 @@ visibility: visible;
 .Dropdown-menu {
   height: 20px;
   position: absolute;
- left: 300px;
+ left: 460px;
+ top: 18px;
 }
 
 .task-list ul li {
@@ -182,7 +183,13 @@ font-size: 15px
   left:4px;
   position: absolute;
   color: pink;
-  font-size: 15px
+  font-size: 18px
 }
 
+.levelup{
+  position: center;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 50px;
+  color: goldenrod;
+}
 
