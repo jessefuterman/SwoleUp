@@ -38,11 +38,12 @@ class List extends Component {
         ]
       },
       elem: "",
-
+      workouts: this.props.passworkouts,
       switch: true,
       lvl2switch: true,
       lvl3switch: true,
       lvl4switch: true,
+      hiddenworkout: ["shandy", "sisters"],
       titles: [
         "LVL 1: LIL LIFTER",
         "LVL 2: GAINING ON YA",
@@ -126,10 +127,17 @@ class List extends Component {
   handleLevelup = () => {
     if (this.state.lvl2switch === false) {
       return <h1 className="levelup"> !SWOLE POWER LVL UP!</h1>;
-    }if (this.state.lvl3switch === false) {
+    }
+    if (this.state.lvl3switch === false) {
       return <h1 className="levelup"> !SWOLE ON SWOLE LVL UP!</h1>;
-    }if (this.state.lvl4switch === false) {
-      return <h1 className="levelup"> !!LVL UP!! U CANT CONTROL THE SWOLE !!LVL UP!!</h1>;
+    }
+    if (this.state.lvl4switch === false) {
+      return (
+        <h1 className="levelup">
+          {" "}
+          !!LVL UP!! U CANT CONTROL THE SWOLE !!LVL UP!!
+        </h1>
+      );
     }
   };
 
@@ -149,7 +157,8 @@ class List extends Component {
     }
     if (this.state.lvl3switch === false) {
       setTimeout(() => this.setState({ lvl3switch: true }), 1500);
-    }if (this.state.lvl4switch === false) {
+    }
+    if (this.state.lvl4switch === false) {
       setTimeout(() => this.setState({ lvl4switch: true }), 1500);
     }
   };
@@ -161,6 +170,7 @@ class List extends Component {
       list: del,
       switch: false
     }));
+
     //exp rules
     if (this.state.percentage === 100) {
       this.setState({ percentage: this.state.percentage * 0 });
@@ -172,11 +182,13 @@ class List extends Component {
       this.setState({ lvl3switch: false });
     }
     if (this.state.hiddenpercentage === 100) {
+      let hidden = this.state.hiddenpercentage
+      this.props.passingHidden(hidden)
       this.setState({ lvl2switch: false });
     }
-
+    
     let del = this.state.list.filter(x => x !== str);
-
+    
     this.props.pass(del);
   };
 
@@ -214,6 +226,7 @@ class List extends Component {
           <h1>{this.handleExperience()}</h1>
         </div>
         <div className="titles"> {this.changeTitle()}</div>
+        
       </div>
     );
   }

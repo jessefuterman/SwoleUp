@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import List from "./List.js";
 // import moment from "moment";
 // import ProgressBarExample from "./ProgressBarExample.js";
+import {} from "react";
 
 class Input extends Component {
   constructor(props) {
@@ -32,7 +33,7 @@ class Input extends Component {
           "Skull Crushers",
           "French Press",
           "Tricep Press",
-          "Rope Tricep Pushdown",
+          "Rope Tricep Pushdown"
         ],
         Back: [
           "Pull-Up",
@@ -40,13 +41,11 @@ class Input extends Component {
           "Inverted Rows w Dumbell",
           "Lat Pull-Downs w Dumbell"
         ],
-        Bicep: ["Bicep Curl", "Hammer Curl", "Preacher Curl"],
-       
-        
+        Bicep: ["Bicep Curl", "Hammer Curl", "Preacher Curl"]
       },
-      selectedOption: ""
+      selectedOption: "",
+      hiddenpercentagecopy: 0
     };
-    console.log(this.state.items, "what is items")
   }
 
   onSubmit = event => {
@@ -156,6 +155,11 @@ class Input extends Component {
     this.setState({ text: event.target.value });
   };
 
+  passingHidden = () => {
+    console.log("does it fire");
+    this.setState({ hiddenpercentagecopy: this.state.hiddenpercentage });
+  };
+
   getModifiedArray = arr => {
     this.setState({ items: arr });
   };
@@ -174,6 +178,7 @@ class Input extends Component {
             value={this.state.selectedOption}
             className="Dropdown-menu"
             onChange={this.handleChange}
+            passingHidden={this.list}
           >
             <option value="" />
             <option value="bicep">Bicep</option>
@@ -186,13 +191,18 @@ class Input extends Component {
             <option value="Leg">Leg</option>
             <option value="PersonalWorkout">Personal Workout List</option>
           </select>
-         
         </div>
-        <List passItem={this.state.items} pass={this.getModifiedArray} passExcerciseBicep ={this.state.selectedOption} passExcerciseShoulder = {this.state.workouts.Shoulder} passExcerciseBack = {this.state.workouts.back}/>
+        <List passingHidden={this.passingHidden}> </List>
+        <List
+          passItem={this.state.items}
+          pass={this.getModifiedArray}
+          passExcerciseBicep={this.state.selectedOption}
+          passExcerciseShoulder={this.state.workouts.Shoulder}
+          passExcerciseBack={this.state.workouts.back}
+        />
       </div>
     );
   }
 }
-
 
 export default Input;
