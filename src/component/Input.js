@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import List from "./List.js";
 // import moment from "moment";
 // import ProgressBarExample from "./ProgressBarExample.js";
-import {} from "react";
+
 
 class Input extends Component {
   constructor(props) {
@@ -155,9 +155,9 @@ class Input extends Component {
     this.setState({ text: event.target.value });
   };
 
-  passingHidden = () => {
+  passingHidden = (hidden) => {
     console.log("does it fire");
-    this.setState({ hiddenpercentagecopy: this.state.hiddenpercentage });
+    this.setState({ hiddenpercentagecopy: hidden });
   };
 
   getModifiedArray = arr => {
@@ -192,7 +192,8 @@ class Input extends Component {
             <option value="PersonalWorkout">Personal Workout List</option>
           </select>
         </div>
-        <List passingHidden={this.passingHidden}> </List>
+        <List passingHidden={this.passingHidden()}></List>
+
         <List
           passItem={this.state.items}
           pass={this.getModifiedArray}
