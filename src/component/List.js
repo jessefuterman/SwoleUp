@@ -142,12 +142,17 @@ class List extends Component {
   };
 
   componentDidUpdate = previousProps => {
-    if (this.props !== previousProps) {
+    if (this.props.workouts !== previousProps) {
       this.setState({
         workouts: this.props.passExcerciseBicep,
-        list: this.props.passItem
+       
       });
     }
+
+    if (this.props.list !== previousProps){
+      this.setState({list: this.props.passItem})
+    }
+    ///
     if (this.state.switch === false) {
       setTimeout(() => this.setState({ switch: true }), 1000);
     }

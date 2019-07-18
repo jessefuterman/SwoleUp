@@ -192,8 +192,8 @@ class Input extends Component {
             <option value="PersonalWorkout">Personal Workout List</option>
           </select>
         </div>
-        <List passingHidden={this.passingHidden()}></List>
-
+        <List passingHidden={this.passingHidden}></List>
+ 
         <List
           passItem={this.state.items}
           pass={this.getModifiedArray}
