@@ -18,8 +18,8 @@ class ProgressBarExample extends Component {
   
   
   
-  componentDidUpdate = previousProps => {
-    if (this.props.pass !== previousProps) {
+  componentDidUpdate = (prevProps, prevState) => {
+    if ( prevProps.pass  !==  this.props.pass) {
      
       this.setState({ percentage: this.props.pass });
     }

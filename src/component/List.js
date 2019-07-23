@@ -141,15 +141,15 @@ class List extends Component {
     }
   };
 
-  componentDidUpdate = previousProps => {
-    if (this.props.workouts !== previousProps) {
+  componentDidUpdate = (prevProps, prevState) => {
+    if ( prevState.workouts !== this.props.workouts ) {
       this.setState({
         workouts: this.props.passExcerciseBicep,
        
       });
     }
 
-    if (this.props.list !== previousProps){
+    if (  prevProps.passItem !== this.props.passItem){
       this.setState({list: this.props.passItem})
     }
     ///
@@ -187,8 +187,8 @@ class List extends Component {
       this.setState({ lvl3switch: false });
     }
     if (this.state.hiddenpercentage === 100) {
-      let hidden = this.state.hiddenpercentage
-      this.props.passingHidden(hidden)
+      // let hidden = this.state.hiddenpercentage
+      // this.props.passingHidden(hidden)
       this.setState({ lvl2switch: false });
     }
     
@@ -198,13 +198,13 @@ class List extends Component {
   };
 
   changeTitle = () => {
-    if (this.state.hiddenpercentage >= 375) {
+    if (this.state.hiddenpercentage > 375) {
       return this.state.titles[3];
     }
-    if (this.state.hiddenpercentage >= 250) {
+    if (this.state.hiddenpercentage > 250) {
       return this.state.titles[2];
     }
-    if (this.state.hiddenpercentage >= 125) {
+    if (this.state.hiddenpercentage > 125) {
       return this.state.titles[1];
     }
     return this.state.titles[0];
