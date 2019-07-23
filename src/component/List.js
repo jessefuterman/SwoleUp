@@ -175,6 +175,7 @@ class List extends Component {
       list: del,
       switch: false
     }));
+    
 
     //exp rules
     if (this.state.percentage === 100) {
@@ -198,16 +199,19 @@ class List extends Component {
   };
 
   changeTitle = () => {
-    if (this.state.hiddenpercentage > 375) {
+    if (this.state.hiddenpercentage >= 375) {
       return this.state.titles[3];
     }
-    if (this.state.hiddenpercentage > 250) {
-      return this.state.titles[2];
+    else if  (this.state.hiddenpercentage >= 250) {
+      return "1e989023e02390e9023"
     }
-    if (this.state.hiddenpercentage > 125) {
+   else if (this.state.hiddenpercentage >= 125) {
       return this.state.titles[1];
     }
-    return this.state.titles[0];
+    else if (this.state.hiddenpercentage >= 0){
+      return this.state.titles[0];
+    }
+    
   };
 
   render() {
@@ -216,12 +220,13 @@ class List extends Component {
     return (
       <div className="task-list">
         <ul>{this.lify()}</ul>
-
+       
         <div className="App-header" />
         <ProgressBarExample
           pass={this.state.percentage}
           passHidden={this.state.hiddenpercentage}
         />
+      
 
         <Modal open={open} onClose={this.onCloseModal} center>
           <h2 className="modal">{this.infoLogic()}</h2>
@@ -230,9 +235,10 @@ class List extends Component {
           <h1>{this.handleLevelup()}</h1>
           <h1>{this.handleExperience()}</h1>
         </div>
-        <div className="titles"> {this.changeTitle()}</div>
+        <h1 className="titles" > {this.changeTitle()}</h1>
+        </div>
         
-      </div>
+    
     );
   }
 }
