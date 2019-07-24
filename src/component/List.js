@@ -176,7 +176,8 @@ class List extends Component {
       switch: false
     }));
     
-
+    let hidden = this.state.hiddenpercentage
+    this.props.passingHidden(hidden)
     //exp rules
     if (this.state.percentage === 100) {
       this.setState({ percentage: this.state.percentage * 0 });
@@ -188,8 +189,7 @@ class List extends Component {
       this.setState({ lvl3switch: false });
     }
     if (this.state.hiddenpercentage === 100) {
-      // let hidden = this.state.hiddenpercentage
-      // this.props.passingHidden(hidden)
+      
       this.setState({ lvl2switch: false });
     }
     
@@ -203,7 +203,7 @@ class List extends Component {
       return this.state.titles[3];
     }
     else if  (this.state.hiddenpercentage >= 250) {
-      return "1e989023e02390e9023"
+      return this.state.titles[2];
     }
    else if (this.state.hiddenpercentage >= 125) {
       return this.state.titles[1];

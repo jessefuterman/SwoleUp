@@ -41,11 +41,13 @@ class Input extends Component {
           "Inverted Rows w Dumbell",
           "Lat Pull-Downs w Dumbell"
         ],
-        Bicep: ["Bicep Curl", "Hammer Curl", "Preacher Curl"]
+        Bicep: ["Bicep Curl", "Hammer Curl", "Preacher Curl"],
+        PersonalWorkout: ""
       },
       selectedOption: "",
       hiddenpercentagecopy: 0
     };
+   
   }
 
   onSubmit = event => {
@@ -57,7 +59,8 @@ class Input extends Component {
   };
 
   triggerWorkout = () => {
-    if (this.state.selectedOption === "") {
+    if (this.state.selectedOption === "PersonalWorkout") {
+      this.personalWorkout()
     }
 
     if (this.state.selectedOption === "Back") {
@@ -79,10 +82,20 @@ class Input extends Component {
       this.tricepOrder();
     }
   };
+  personalWorkout = () => {
+    this.setState({
+      text: "",
+      items: [
+    
+       
+      ]
+    });
+  };
+  
 
   tricepOrder = () => {
     this.setState({
-      text: "",
+    
       items: [
         this.state.workouts.Tricep[0],
         this.state.workouts.Tricep[1],
@@ -98,7 +111,8 @@ class Input extends Component {
       items: [
         this.state.workouts.Bicep[0],
         this.state.workouts.Bicep[1],
-        this.state.workouts.Bicep[2]
+        this.state.workouts.Bicep[2],
+      
       ]
     });
   };
@@ -156,9 +170,25 @@ class Input extends Component {
   };
 
   passingHidden = (hidden) => {
-    console.log("does it fire");
-    this.setState({ hiddenpercentagecopy: hidden });
+   
+    this.unlockExcercise()
+    this.setState({ hiddenpercentagecopy:  hidden });
+    console.log("this is hiddenpercentage" ,this.state.hiddenpercentagecopy)
   };
+
+  unlockExcercise = () => {
+  if(this.state.hiddenpercentagecopy >= 75){
+    console.log(this.state.workouts.PersonalWorkout)
+    let newTask = ["lala"]
+      
+    
+    this.setState(prevState => ({
+      workouts: [ {"lvl2workout": "slow curl"}, ...prevState.workouts]
+    }))
+    
+}
+}
+  
 
   getModifiedArray = arr => {
     this.setState({ items: arr });
@@ -167,7 +197,9 @@ class Input extends Component {
   handleChange = event => {
     this.setState({ selectedOption: event.target.value }, () =>
       this.triggerWorkout()
+     
     );
+   
   };
 
   render() {
@@ -192,9 +224,10 @@ class Input extends Component {
             <option value="PersonalWorkout">Personal Workout List</option>
           </select>
         </div>
-        <List passingHidden={this.passingHidden}></List>
+       
  
         <List
+         passingHidden={this.passingHidden}
           passItem={this.state.items}
           pass={this.getModifiedArray}
           passExcerciseBicep={this.state.selectedOption}
