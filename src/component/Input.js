@@ -42,7 +42,7 @@ class Input extends Component {
           "Lat Pull-Downs w Dumbell"
         ],
         Bicep: ["Bicep Curl", "Hammer Curl", "Preacher Curl"],
-        PersonalWorkout: ""
+        PersonalWorkout: [""]
       },
       selectedOption: "",
       hiddenpercentagecopy: 0
@@ -50,13 +50,13 @@ class Input extends Component {
    
   }
 
-  onSubmit = event => {
-    event.preventDefault();
-    this.setState({
-      text: "",
-      items: [...this.state.items, this.state.text]
-    });
-  };
+  // onSubmit = event => {
+  //   event.preventDefault();
+  //   this.setState({
+  //     text: "",
+  //     items: [...this.state.items, this.state.text]
+  //   });
+  // };
 
   triggerWorkout = () => {
     if (this.state.selectedOption === "PersonalWorkout") {
@@ -86,7 +86,7 @@ class Input extends Component {
     this.setState({
       text: "",
       items: [
-    
+        this.state.workouts.PersonalWorkout[0],
        
       ]
     });
@@ -97,7 +97,7 @@ class Input extends Component {
     this.setState({
     
       items: [
-        this.state.workouts.Tricep[0],
+         this.state.workouts.Tricep[0],
         this.state.workouts.Tricep[1],
         this.state.workouts.Tricep[2],
         this.state.workouts.Tricep[3]
@@ -178,12 +178,12 @@ class Input extends Component {
 
   unlockExcercise = () => {
   if(this.state.hiddenpercentagecopy >= 75){
-    console.log(this.state.workouts.PersonalWorkout)
-    let newTask = ["lala"]
+    console.log(this.state.workouts.PersonalWorkout, "this is personal")
+    let newTask = "lalalalala"
       
     
     this.setState(prevState => ({
-      workouts: [ {"lvl2workout": "slow curl"}, ...prevState.workouts]
+      PersonalWorkout: [this.state.workouts.PersonalWorkout, ...newTask ]
     }))
     
 }
@@ -210,7 +210,7 @@ class Input extends Component {
             value={this.state.selectedOption}
             className="Dropdown-menu"
             onChange={this.handleChange}
-            passingHidden={this.list}
+           
           >
             <option value="" />
             <option value="bicep">Bicep</option>
