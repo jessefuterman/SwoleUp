@@ -25,6 +25,7 @@ class List extends Component {
     this.state = {
       items: [],
       list: this.props.passItem,
+      shoulderPass: this.props.passingShoulder,
       hiddenpercentage: 0,
       percentage: 0,
       open: false,
@@ -47,7 +48,7 @@ class List extends Component {
       lvl2switch: true,
       lvl3switch: true,
       lvl4switch: true,
-      hiddenworkout: ["shandy", "sisters"],
+   
       titles: [
         "LVL 1: LIL LIFTER",
         "LVL 2: GAINING ON YA",
@@ -89,12 +90,16 @@ class List extends Component {
   };
 
   lify = event => {
+    console.log(this.state.shoulderPass, "what is it?")
     if (this.state.list !== undefined) {
       let mapOne = this.state.list.map(elem => (
-       <ul>
+       
         <li>
+       
           {elem}
-
+       
+         
+          
           <button
             className="buttonTwo"
             onClick={() => {
@@ -118,8 +123,9 @@ class List extends Component {
             ?
           </button>
         </li>
-        </ul>
+       
       ));
+      
       return mapOne;
     }
   };

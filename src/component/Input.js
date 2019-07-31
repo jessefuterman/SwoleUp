@@ -3,13 +3,13 @@ import List from "./List.js";
 // import moment from "moment";
 // import ProgressBarExample from "./ProgressBarExample.js";
 
-
 class Input extends Component {
   constructor(props) {
     super(props);
     this.state = {
       text: "",
       items: [],
+      
       workouts: {
         Shoulder: [
           "Overhead Press",
@@ -42,12 +42,11 @@ class Input extends Component {
           "Lat Pull-Downs w Dumbell"
         ],
         Bicep: ["Bicep Curl", "Hammer Curl", "Preacher Curl"],
-        PersonalWorkout: ["",]
+        PersonalWorkout: [""]
       },
       selectedOption: "",
       hiddenpercentagecopy: 0
     };
-   
   }
 
   // onSubmit = event => {
@@ -60,7 +59,7 @@ class Input extends Component {
 
   triggerWorkout = () => {
     if (this.state.selectedOption === "PersonalWorkout") {
-      this.personalWorkout()
+      this.personalWorkout();
     }
 
     if (this.state.selectedOption === "Back") {
@@ -83,24 +82,15 @@ class Input extends Component {
     }
   };
   personalWorkout = () => {
-    
-    
-    
-  
     this.setState({
-      
-      items: [
-        
-      ]
+      items: []
     });
   };
-  
 
   tricepOrder = () => {
     this.setState({
-    
       items: [
-         this.state.workouts.Tricep[0],
+        this.state.workouts.Tricep[0],
         this.state.workouts.Tricep[1],
         this.state.workouts.Tricep[2],
         this.state.workouts.Tricep[3]
@@ -110,12 +100,10 @@ class Input extends Component {
 
   bicepOrder = () => {
     this.setState({
-     
       items: [
         this.state.workouts.Bicep[0],
         this.state.workouts.Bicep[1],
-        this.state.workouts.Bicep[2],
-      
+        this.state.workouts.Bicep[2]
       ]
     });
   };
@@ -156,26 +144,25 @@ class Input extends Component {
     });
   };
 
-  shoulderOrder = (i) => {
-    let pushed =[]
-    console.log(pushed, "what is happening")
+  shoulderOrder = i => {
+    let pushed = [];
+    
+    
    
-    for(i = 0; i < this.state.workouts.Shoulder.length; i++) {
+ 
+    for (i = 0; i < this.state.workouts.Shoulder.length; i++) {
       pushed.push(
        
-       <ul><li>{this.state.workouts.Shoulder[i]}</li></ul>
-     
-      );
-      
+          <li>{this.state.workouts.Shoulder[i]}</li>
+          
+       
+      )
     }
-    
-    
-   
+
     this.setState({
-      text: "",
-      items: [
-       pushed
-      ]
+      
+      items: [pushed],
+     
     });
   };
 
@@ -184,26 +171,22 @@ class Input extends Component {
     this.setState({ text: event.target.value });
   };
 
-  passingHidden = (hidden) => {
-   
-    this.unlockExcercise()
-    this.setState({ hiddenpercentagecopy:  hidden });
-    console.log("this is hiddenpercentage" ,this.state.hiddenpercentagecopy)
+  passingHidden = hidden => {
+    this.unlockExcercise();
+    this.setState({ hiddenpercentagecopy: hidden });
+    console.log("this is hiddenpercentage", this.state.hiddenpercentagecopy);
   };
 
   unlockExcercise = () => {
-  if(this.state.hiddenpercentagecopy >= 75){
-    console.log(this.state.workouts.items, "this is personal")
-    let newTask = "lalalalala"
-      
-    
-    this.setState(prevState => ({
-      PersonalWorkout: [this.state.workouts.items, ...newTask ]
-    }))
-    
-}
-}
-  
+    if (this.state.hiddenpercentagecopy >= 75) {
+      console.log(this.state.workouts.items, "this is personal");
+      let newTask = "lalalalala";
+
+      this.setState(prevState => ({
+        PersonalWorkout: [this.state.workouts.items, ...newTask]
+      }));
+    }
+  };
 
   getModifiedArray = arr => {
     this.setState({ items: arr });
@@ -212,9 +195,7 @@ class Input extends Component {
   handleChange = event => {
     this.setState({ selectedOption: event.target.value }, () =>
       this.triggerWorkout()
-     
     );
-   
   };
 
   render() {
@@ -225,7 +206,6 @@ class Input extends Component {
             value={this.state.selectedOption}
             className="Dropdown-menu"
             onChange={this.handleChange}
-           
           >
             <option value="" />
             <option value="bicep">Bicep</option>
@@ -239,10 +219,10 @@ class Input extends Component {
             <option value="PersonalWorkout">Personal Workout List</option>
           </select>
         </div>
-       
- 
+
         <List
-         passingHidden={this.passingHidden}
+       
+          passingHidden={this.passingHidden}
           passItem={this.state.items}
           pass={this.getModifiedArray}
           passExcerciseBicep={this.state.selectedOption}
