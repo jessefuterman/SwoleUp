@@ -107,9 +107,10 @@ visibility: visible;
 .task-list ul li {
   display: inline-block;
   color: white;
-  display: flex;
-  justify-content: space-between;
+  display: inline-flex;
+  left: 5000px;
   margin-top: 40px;
+  flex-direction: column;
 }
 .task-list ul {
   top: -40px;

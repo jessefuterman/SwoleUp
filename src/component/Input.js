@@ -42,7 +42,7 @@ class Input extends Component {
           "Lat Pull-Downs w Dumbell"
         ],
         Bicep: ["Bicep Curl", "Hammer Curl", "Preacher Curl"],
-        PersonalWorkout: [""]
+        PersonalWorkout: ["",]
       },
       selectedOption: "",
       hiddenpercentagecopy: 0
@@ -83,11 +83,14 @@ class Input extends Component {
     }
   };
   personalWorkout = () => {
+    
+    
+    
+  
     this.setState({
-      text: "",
+      
       items: [
-        this.state.workouts.PersonalWorkout[0],
-       
+        
       ]
     });
   };
@@ -107,7 +110,7 @@ class Input extends Component {
 
   bicepOrder = () => {
     this.setState({
-      text: "",
+     
       items: [
         this.state.workouts.Bicep[0],
         this.state.workouts.Bicep[1],
@@ -153,13 +156,25 @@ class Input extends Component {
     });
   };
 
-  shoulderOrder = () => {
+  shoulderOrder = (i) => {
+    let pushed =[]
+    console.log(pushed, "what is happening")
+   
+    for(i = 0; i < this.state.workouts.Shoulder.length; i++) {
+      pushed.push(
+       
+       <ul><li>{this.state.workouts.Shoulder[i]}</li></ul>
+     
+      );
+      
+    }
+    
+    
+   
     this.setState({
       text: "",
       items: [
-        this.state.workouts.Shoulder[0],
-        this.state.workouts.Shoulder[1],
-        this.state.workouts.Shoulder[2]
+       pushed
       ]
     });
   };
@@ -178,12 +193,12 @@ class Input extends Component {
 
   unlockExcercise = () => {
   if(this.state.hiddenpercentagecopy >= 75){
-    console.log(this.state.workouts.PersonalWorkout, "this is personal")
+    console.log(this.state.workouts.items, "this is personal")
     let newTask = "lalalalala"
       
     
     this.setState(prevState => ({
-      PersonalWorkout: [this.state.workouts.PersonalWorkout, ...newTask ]
+      PersonalWorkout: [this.state.workouts.items, ...newTask ]
     }))
     
 }

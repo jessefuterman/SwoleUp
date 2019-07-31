@@ -2,6 +2,8 @@ import React, { Component } from "react";
 // import moment from "moment";
 import ProgressBarExample from "./ProgressBarExample.js";
 import Modal from "react-responsive-modal";
+// import firebase from "firebase"
+// import fire from "./component/fire.js"
 
 import {
   Button,
@@ -14,6 +16,8 @@ import {
   Icon,
   Sprite
 } from "nes-react";
+
+// Initialize Firebase
 
 class List extends Component {
   constructor(props) {
@@ -87,6 +91,7 @@ class List extends Component {
   lify = event => {
     if (this.state.list !== undefined) {
       let mapOne = this.state.list.map(elem => (
+       <ul>
         <li>
           {elem}
 
@@ -113,6 +118,7 @@ class List extends Component {
             ?
           </button>
         </li>
+        </ul>
       ));
       return mapOne;
     }
@@ -142,15 +148,14 @@ class List extends Component {
   };
 
   componentDidUpdate = (prevProps, prevState) => {
-    if ( prevState.workouts !== this.props.workouts ) {
+    if (prevState.workouts !== this.props.workouts) {
       this.setState({
-        workouts: this.props.passExcerciseBicep,
-       
+        workouts: this.props.passExcerciseBicep
       });
     }
 
-    if (  prevProps.passItem !== this.props.passItem){
-      this.setState({list: this.props.passItem})
+    if (prevProps.passItem !== this.props.passItem) {
+      this.setState({ list: this.props.passItem });
     }
     ///
     if (this.state.switch === false) {
@@ -175,9 +180,9 @@ class List extends Component {
       list: del,
       switch: false
     }));
-    
-    let hidden = this.state.hiddenpercentage
-    this.props.passingHidden(hidden)
+
+    let hidden = this.state.hiddenpercentage;
+    this.props.passingHidden(hidden);
     //exp rules
     if (this.state.percentage === 100) {
       this.setState({ percentage: this.state.percentage * 0 });
@@ -189,29 +194,24 @@ class List extends Component {
       this.setState({ lvl3switch: false });
     }
     if (this.state.hiddenpercentage === 100) {
-      
       this.setState({ lvl2switch: false });
     }
-    
+
     let del = this.state.list.filter(x => x !== str);
-    
+
     this.props.pass(del);
   };
 
   changeTitle = () => {
     if (this.state.hiddenpercentage >= 375) {
       return this.state.titles[3];
-    }
-    else if  (this.state.hiddenpercentage >= 250) {
+    } else if (this.state.hiddenpercentage >= 250) {
       return this.state.titles[2];
-    }
-   else if (this.state.hiddenpercentage >= 125) {
+    } else if (this.state.hiddenpercentage >= 125) {
       return this.state.titles[1];
-    }
-    else if (this.state.hiddenpercentage >= 0){
+    } else if (this.state.hiddenpercentage >= 0) {
       return this.state.titles[0];
     }
-    
   };
 
   render() {
@@ -220,13 +220,12 @@ class List extends Component {
     return (
       <div className="task-list">
         <ul>{this.lify()}</ul>
-       
+
         <div className="App-header" />
         <ProgressBarExample
           pass={this.state.percentage}
           passHidden={this.state.hiddenpercentage}
         />
-      
 
         <Modal open={open} onClose={this.onCloseModal} center>
           <h2 className="modal">{this.infoLogic()}</h2>
@@ -235,10 +234,8 @@ class List extends Component {
           <h1>{this.handleLevelup()}</h1>
           <h1>{this.handleExperience()}</h1>
         </div>
-        <h1 className="titles" > {this.changeTitle()}</h1>
-        </div>
-        
-    
+        <h1 className="titles"> {this.changeTitle()}</h1>
+      </div>
     );
   }
 }
