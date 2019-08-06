@@ -25,7 +25,7 @@ class List extends Component {
     this.state = {
       items: [],
       list: this.props.passItem,
-      shoulderPass: this.props.passingShoulder,
+
       hiddenpercentage: 0,
       percentage: 0,
       open: false,
@@ -33,13 +33,24 @@ class List extends Component {
         Bicep: [
           "Step 1: Stand up straight with a dumbbell in each hand, holding them alongside you. Your palms should face your body. Keep your feet hip-width apart and engage your core to stabilize the body. Step 2: Keep your biceps stationary and start bending at your elbows, lifting both dumbbells. Step 3:Lift until the dumbbells reach shoulder-level, but don’t actually touch your shoulders. Hold this contraction briefly, then lower back to the starting position and repeat.",
           "Grab a pair of dumbbells and let them hang at arm’s length next to your sides with your palms facing your thighs. Without moving your upper arms, bend your elbows and curl the dumbbells as close to your shoulders as you can. Pause, then slowly lower the weight back to the starting position. Each time you return to the starting position, completely straighten your arms.",
-          "Grab an EZ-bar with your hands six inches apart. Rest your upper arms on the sloping pad of a preacher bench and hold the bar in front of you with your elbows slightly bent. Without moving your upper arms, bend your elbows and curl the bar toward your shoulders. Pause, then slowly lower the weight back to the starting position"
+          "Grab an EZ-bar with your hands six inches apart. Rest your upper arms on the sloping pad of a preacher bench and hold the bar in front of you with your elbows slightly bent. Without moving your upper arms, bend your elbows and curl the bar toward your shoulders. Pause, then slowly lower the weight back to the starting position",
+          "The same as the regular Curl, except do it as SLOWLY as you can while focusing on your breath.Step 1: Stand up straight with a dumbbell in each hand, holding them alongside you. Your palms should face your body. Keep your feet hip-width apart and engage your core to stabilize the body. Step 2: Keep your biceps stationary and start bending at your elbows, lifting both dumbbells. Step 3:Lift until the dumbbells reach shoulder-level, but don’t actually touch your shoulders. Hold this contraction briefly, then lower back to the starting position and repeat.",
+          "The same as the regular Hammer Curl, except do it as SLOWLY as you can while focusing on your breath. Grab a pair of dumbbells and let them hang at arm’s length next to your sides with your palms facing your thighs. Without moving your upper arms, bend your elbows and curl the dumbbells as close to your shoulders as you can. Pause, then slowly lower the weight back to the starting position. Each time you return to the starting position, completely straighten your arms.",
+          "The same as the regular Preacher Curl, except do it as SLOWLY as you can while focusing on your breath. Grab an EZ-bar with your hands six inches apart. Rest your upper arms on the sloping pad of a preacher bench and hold the bar in front of you with your elbows slightly bent. Without moving your upper arms, bend your elbows and curl the bar toward your shoulders. Pause, then slowly lower the weight back to the starting position",
+
+
         ],
         Tricep: [
           "Set up for the french press by loading a barbell or EZ-bar with the appropriate amount of weight and placing it on the floor in front of you. Bend only at the knees and grasp the barbell with an overhand grip (palms facing down) with your hands about 8-12 inches apart. Stand up straight with the bar with your feet around shoulder width apart and a slight bend in your knees. Lift the bar above your head and bend at your elbows slightly to take the tension onto your triceps. Your palms are now facing upward. This is the starting position for the exercise. Keeping your elbows fixed and pointing straight up toward the ceiling, slowly lower the bar down behind your head as far as comfortably possible. Pause, and then slowly raise the bar back to the starting position. Don't lock your elbows out, and then repeat the movement.",
           "To perform the Skull Crusher excercise, sit up straight on a chair, bench or -- for an added balance challenge -- a stability ball. Place both feet flat on the floor and hold the dumbbells above your head. Your arms should be extended toward the ceiling -- but not locked -- with your palms facing each other. Bend your elbows to lower the weights slowly behind your head. As with the lying version, try to move your shoulders and upper arms as little as possible. Extend your arms upward to complete one repetition. Keep your head up, your abs tight and your back straight at all times.",
           "Set the cable machine up with the bar at head height. Grab the bar and stand upright with your back straight and your elbows tucked in to your sides. Stand with your feet hip-width apart, or place one in front of the other if it helps you balance. Pull the cable down until the bar touches your thighs and pause to squeeze your triceps at the bottom of the move. Then slowly raise the bar back to the starting position. Make sure you don’t lean forwards to aid the press and don’t let your elbows leave your sides, otherwise you’ll lose some of the focus on the triceps.",
-          "Start by bracing your abdominals.Tuck your elbows in at your sides and position your feet slightly apart Inhale. Push down until your elbows are fully extended but not yet in the straight, locked position. Keep your elbows close to your body and bend your knees slightly on the pushdown. Resist bending forward. Try to keep your back as straight as possible as you push down. As you exhale, return to the starting point using a controlled movement. Try not to crash the weights.For beginners, aim to complete 4 sets of 8 reps"
+          "Start by bracing your abdominals.Tuck your elbows in at your sides and position your feet slightly apart Inhale. Push down until your elbows are fully extended but not yet in the straight, locked position. Keep your elbows close to your body and bend your knees slightly on the pushdown. Resist bending forward. Try to keep your back as straight as possible as you push down. As you exhale, return to the starting point using a controlled movement. Try not to crash the weights.For beginners, aim to complete 4 sets of 8 reps",
+          "The same as the regular French Press, except do it as SLOWLY as you can while focusing on your breath. Set up for the french press by loading a barbell or EZ-bar with the appropriate amount of weight and placing it on the floor in front of you. Bend only at the knees and grasp the barbell with an overhand grip (palms facing down) with your hands about 8-12 inches apart. Stand up straight with the bar with your feet around shoulder width apart and a slight bend in your knees. Lift the bar above your head and bend at your elbows slightly to take the tension onto your triceps. Your palms are now facing upward. This is the starting position for the exercise. Keeping your elbows fixed and pointing straight up toward the ceiling, slowly lower the bar down behind your head as far as comfortably possible. Pause, and then slowly raise the bar back to the starting position. Don't lock your elbows out, and then repeat the movement.",
+          "The same as the regular Skull Crusher, except do it as SLOWLY as you can while focusing on your breath. To perform the Skull Crusher excercise, sit up straight on a chair, bench or -- for an added balance challenge -- a stability ball. Place both feet flat on the floor and hold the dumbbells above your head. Your arms should be extended toward the ceiling -- but not locked -- with your palms facing each other. Bend your elbows to lower the weights slowly behind your head. As with the lying version, try to move your shoulders and upper arms as little as possible. Extend your arms upward to complete one repetition. Keep your head up, your abs tight and your back straight at all times.",
+          "The same as the regular Tricep Press, except do it as SLOWLY as you can while focusing on your breath. Set the cable machine up with the bar at head height. Grab the bar and stand upright with your back straight and your elbows tucked in to your sides. Stand with your feet hip-width apart, or place one in front of the other if it helps you balance. Pull the cable down until the bar touches your thighs and pause to squeeze your triceps at the bottom of the move. Then slowly raise the bar back to the starting position. Make sure you don’t lean forwards to aid the press and don’t let your elbows leave your sides, otherwise you’ll lose some of the focus on the triceps.",
+          "The same as the regular Rope Tricep Pushdown, except do it as SLOWLY as you can while focusing on your breath. Start by bracing your abdominals.Tuck your elbows in at your sides and position your feet slightly apart Inhale. Push down until your elbows are fully extended but not yet in the straight, locked position. Keep your elbows close to your body and bend your knees slightly on the pushdown. Resist bending forward. Try to keep your back as straight as possible as you push down. As you exhale, return to the starting point using a controlled movement. Try not to crash the weights.For beginners, aim to complete 4 sets of 8 reps",
+
+
         ]
       },
       elem: "",
@@ -48,7 +59,7 @@ class List extends Component {
       lvl2switch: true,
       lvl3switch: true,
       lvl4switch: true,
-   
+
       titles: [
         "LVL 1: LIL LIFTER",
         "LVL 2: GAINING ON YA",
@@ -66,6 +77,7 @@ class List extends Component {
   };
 
   infoLogic = () => {
+    //Bicep
     if (this.state.elem === "Bicep Curl") {
       return this.state.modalText.Bicep[0];
     }
@@ -75,31 +87,45 @@ class List extends Component {
     if (this.state.elem === "Preacher Curl") {
       return this.state.modalText.Bicep[2];
     }
+    //Slow Bicep (LVL 2)
+    if (this.state.elem === "Slow Bicep Curl"){
+      return this.state.modalText.Bicep[3];
+    }if (this.state.elem === "Slow Hammer Curl"){
+      return this.state.modalText.Bicep[4];
+    }if (this.state.elem === "Slow Preacher Curl"){
+      return this.state.modalText.Bicep[5];
+    }
+    //Tricep
     if (this.state.elem === "French Press") {
       return this.state.modalText.Tricep[0];
     }
-    if (this.state.elem === "Skull Crushers") {
+    if (this.state.elem === "Skull Crusher") {
       return this.state.modalText.Tricep[1];
     }
     if (this.state.elem === "Tricep Press") {
       return this.state.modalText.Tricep[2];
-    }
-    if (this.state.elem === "Rope Tricep Pushdown") {
+    }if (this.state.elem === "Rope Tricep Pushdown") {
       return this.state.modalText.Tricep[3];
+    }
+    //Slow Tricep (LVL 2)
+    if (this.state.elem === "Slow Skull Crusher") {
+      return this.state.modalText.Tricep[4];
+    }if(this.state.elem === "Slow French Press") {
+      return this.state.modalText.Tricep[5];
+    }if(this.state.elem === "Slow Tricep Press") {
+      return this.state.modalText.Tricep[6];
+    }if(this.state.elem === "Slow Rope Tricep Pushdown") {
+      return this.state.modalText.Tricep[7];
     }
   };
 
   lify = event => {
-    console.log(this.state.shoulderPass, "what is it?")
+    console.log(this.state.shoulderPass, "what is it?");
     if (this.state.list !== undefined) {
       let mapOne = this.state.list.map(elem => (
-       
         <li>
-       
           {elem}
-       
-         
-          
+
           <button
             className="buttonTwo"
             onClick={() => {
@@ -123,9 +149,8 @@ class List extends Component {
             ?
           </button>
         </li>
-       
       ));
-      
+
       return mapOne;
     }
   };
@@ -186,7 +211,7 @@ class List extends Component {
       list: del,
       switch: false
     }));
-
+    //passing hidden percentage
     let hidden = this.state.hiddenpercentage;
     this.props.passingHidden(hidden);
     //exp rules

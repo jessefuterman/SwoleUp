@@ -21,7 +21,7 @@ visibility: visible;
   width: 16px;
   height: 4vh;
   padding: 0px 0;
-  right: 850px ;
+  right: 850px ; 
   
   
   
@@ -108,18 +108,20 @@ visibility: visible;
   
   color: white;
   display: inline-flex;
-  left: 5000px;
+ 
   margin-top: 40px;
   flex-direction: column;
+  bottom: 200px;
 }
 .task-list ul {
   top: -40px;
   flex-direction: column;
-  justify-content: space-between;
+  
   padding: 0px;
   max-width: 300px;
   margin: auto;
   left: 500px;
+  bottom: 200px;
   display: inline-flex;
 }
 
