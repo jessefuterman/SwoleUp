@@ -18,34 +18,6 @@ class App extends Component {
       user: {},
     };
   }
-// googleLogin = () => {
-//   const provider = firebase.auth.GoogleAuthProvider()
-//   firebase.auth().signInWithPopup(provider)
-
-//   .then(result => {
-//     const user = result.user;
-//     document.write(`Hello ${user.displayName}`);
-//     console.log(user, "this is uer")
-//   })
-//   .catch(console.log)
-
-
-// }
-
-// authListener = () => {
-//   fire.auth().onAuthStateChanged((user) => {
-//   if (user) {
-//     this.setState({user});
-//     //localStorage.setItem('user', user.uid)
-//   }else{
-//     this.setState({user: null});
-//    // localStorage.removeItem('user')
-//   }
-
-
-
-//   })
-// }
 
   
 
