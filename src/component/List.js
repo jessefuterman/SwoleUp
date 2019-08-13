@@ -2,7 +2,7 @@ import React, { Component } from "react";
 // import moment from "moment";
 import ProgressBarExample from "./ProgressBarExample.js";
 import Modal from "react-responsive-modal";
-// import firebase from "firebase"
+ import Firebase from "firebase"
 // import fire from "./component/fire.js"
 
 import {
@@ -16,12 +16,14 @@ import {
   Icon,
   Sprite
 } from "nes-react";
+import fire from "./fire.js";
 
 // Initialize Firebase
-
 class List extends Component {
   constructor(props) {
     super(props);
+   
+   
     this.state = {
       items: [],
       list: this.props.passItem,
@@ -79,6 +81,8 @@ class List extends Component {
   onCloseModal = () => {
     this.setState({ open: false });
   };
+
+
 
   infoLogic = () => {
     //Bicep
@@ -238,6 +242,21 @@ class List extends Component {
     }
   };
 
+//firebase 
+  submitScore = () => {
+    let data = {
+      levelTitle: this.state.titles,
+      name: "gladdis",
+      percentage: this.state.percentage
+
+    }
+     
+    console.log(data)
+    var database = Firebase.database()
+    var ref= database.ref('leveltitle')
+    ref.push(data)
+  }
+
   handleSubmit = str => {
     this.setState((prevState, props) => ({
       hiddenpercentage: this.state.hiddenpercentage + 25,
@@ -245,6 +264,8 @@ class List extends Component {
       list: del,
       switch: false
     }));
+
+    this.submitScore()
     //passing hidden percentage
     let hidden = this.state.hiddenpercentage;
     this.props.passingHidden(hidden);
@@ -260,7 +281,7 @@ class List extends Component {
     }
     if (this.state.hiddenpercentage === 100) {
       this.setState({ lvl2switch: false });
-    }
+    } 
 
     let del = this.state.list.filter(x => x !== str);
 

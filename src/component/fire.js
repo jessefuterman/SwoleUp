@@ -9,5 +9,17 @@ const firebaseConfig = {
     messagingSenderId: "746453714210",
     appId: "1:746453714210:web:e8f888ec64763fe2"
   };
+ 
+ 
   const fire = firebase.initializeApp(firebaseConfig);
+
+  var database = firebase.database()
+  var ref = database.ref('drebin')
+
+  var data = {
+    name: "isesse",
+    level: 3
+  }
+
+  ref.push(data)
 export default fire;
