@@ -224,7 +224,7 @@ class List extends Component {
     }
     ///
     if (this.state.switch === false) {
-      setTimeout(() => this.setState({ switch: true }), 1000);
+     
     }
 
     if (this.state.lvl2switch === false) {
