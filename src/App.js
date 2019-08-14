@@ -14,9 +14,15 @@ class App extends Component {
     super();
     this.state = {
       items: [],
-      user: null
+      user: null,
+      email: ""
     };
     this.authListener = this.authListener.bind(this);
+  }
+  passEmail = (email) => {
+    this.setState({ email: email });
+    console.log("this is email in app", this.state.email)
+    
   }
 
   componentDidMount() {
@@ -31,6 +37,7 @@ class App extends Component {
       console.log(user);
       if (user) {
         this.setState({ user });
+        
         localStorage.setItem("user", user.uid);
       } else {
         this.setState({ user: null });
@@ -43,8 +50,10 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <div>{this.state.user ? <Input /> : <Login />}</div>
+        <div>{this.state.user ? <Input /> : <Login passEmail ={this.passEmail} />}</div>
         <button onClick={this.logout}>Logout</button>
+        <List passingEmail={this.passEmail}></List>
+       
       </div>
     );
   }

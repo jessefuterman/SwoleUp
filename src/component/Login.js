@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 // import { Link } from 'react-router-dom';
-import fire from "./fire.js";
+import fire from "./fire";
 
 class Login extends Component {
   constructor(props) {
@@ -15,10 +15,14 @@ class Login extends Component {
   }
 
   handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ [e.target.name]: e.target.value })
+    
+    
+    
   }
 
   login(e) {
+    
     e.preventDefault();
     fire
       .auth()
@@ -27,7 +31,8 @@ class Login extends Component {
       .catch(error => {
         console.log(error);
       });
-      console.log(fire, "this is fire")
+      let email = this.state.email 
+      this.props.passEmail(email)
   }
 
   signup(e) {
