@@ -9,7 +9,8 @@ class Input extends Component {
     this.state = {
       text: "",
       items: [],
-
+      email: this.props.passingEmail,
+      
       workouts: {
         Shoulder: [
           "Overhead Press",
@@ -48,6 +49,7 @@ class Input extends Component {
       hiddenpercentagecopy: 0
     };
   }
+  
 
   // onSubmit = event => {
   //   event.preventDefault();
@@ -57,7 +59,10 @@ class Input extends Component {
   //   });
   // };
 
+  
+
   triggerWorkout = () => {
+    console.log(this.props.passingEmail, "passing email in input")
     if (this.state.selectedOption === "Nathan Micay") {
       this.personalWorkout();
     }
@@ -268,6 +273,7 @@ class Input extends Component {
         </div>
 
         <List
+          passingEmail={this.state.email}
           passingHidden={this.passingHidden}
           passItem={this.state.items}
           pass={this.getModifiedArray}

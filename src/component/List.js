@@ -152,7 +152,6 @@ class List extends Component {
   };
 
   lify = event => {
-   
     if (this.state.list !== undefined) {
       let mapOne = this.state.list.map(elem => (
         <li>
@@ -164,7 +163,6 @@ class List extends Component {
               this.handleSubmit(elem);
               this.handleExperience(elem);
               this.setState({ elem: elem });
-             
             }}
           >
             POWER UP
@@ -197,7 +195,6 @@ class List extends Component {
     if (this.state.lvl2switch === false) {
       return (
         <h1 className="levelup">
-          {" "}
           !!!SLOWED EXCERCISES HAVE BECOME UNLOCKED!!!
         </h1>
       );
@@ -241,28 +238,59 @@ class List extends Component {
     }
   };
 
-  passEmail = (props) => {
-    this.setState({
-      email: this.props.passingEmail
-    });
-    console.log("does this work with email?!?!",  this.state.user)
-    console.log(this.props.passingEmail, "this is props passingemail")
-  };
+  // passEmail = props => {
+  //   this.setState({
+  //     email: this.props.passingEmail
+  //   });
+  //   console.log(this.props.passingEmail, "this is props passingemail");
+  // };
 
   //firebase
 
- 
   submitScore = () => {
-    let data = {
-      levelTitle: this.state.titles,
-      name: "gladdis",
-      percentage: this.state.percentage
-    };
-    this.passEmail()
-    console.log(data, "this is data for firebase");
-    var database = Firebase.database();
-    var ref = database.ref("leveltitle");
-    ref.push(data);
+    //level1
+    if (this.state.hiddenpercentage >= 375) {
+      
+    } else if (this.state.hiddenpercentage >= 250) {
+      this.passEmail();
+        console.log("does this get to this.state.titles[2");
+        let data = {
+          levelTitle: this.state.titles[2],
+          name: this.props.passingEmail,
+          experience: this.state.hiddenpercentage
+        };
+        let database = Firebase.database();
+        let ref = database.ref("leveltitle");
+        ref.push(data);
+      
+    } else if (this.state.hiddenpercentage >= 125) {
+      console.log("are we getting inside level 2 conditional");
+      // this.passEmail();
+      let data = {
+        levelTitle: this.state.titles[1],
+        name: this.props.passingEmail,
+        experience: this.state.hiddenpercentage
+      };
+      let database = Firebase.database();
+      let ref = database.ref("leveltitle");
+      ref.push(data);
+      console.log(data, "firebase data level 2");
+    } else if (this.state.hiddenpercentage >= 0) {
+      // this.passEmail();
+      console.log("are we getting inside of conditional title");
+      let data = {
+        levelTitle: this.state.titles[0],
+        name: this.props.passingEmail,
+        experience: this.state.hiddenpercentage
+      };
+
+      let database = Firebase.database();
+      let ref = database.ref("leveltitle");
+      ref.push(data);
+      console.log(data, "this is firebase data");
+    } 
+
+    //level2
   };
 
   handleSubmit = str => {
@@ -273,7 +301,6 @@ class List extends Component {
       switch: false
     }));
 
-    this.submitScore();
     //passing hidden percentage
     let hidden = this.state.hiddenpercentage;
     this.props.passingHidden(hidden);
@@ -285,9 +312,13 @@ class List extends Component {
       this.setState({ lvl4switch: false });
     }
     if (this.state.hiddenpercentage === 225) {
+      this.submitScore();
+
       this.setState({ lvl3switch: false });
     }
     if (this.state.hiddenpercentage === 100) {
+      this.submitScore();
+
       this.setState({ lvl2switch: false });
     }
 
@@ -329,7 +360,6 @@ class List extends Component {
           <h1>{this.handleExperience()}</h1>
         </div>
         <h1 className="titles"> {this.changeTitle()}</h1>
-       
       </div>
     );
   }

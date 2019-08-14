@@ -22,10 +22,11 @@ class App extends Component {
   passEmail = (email) => {
     this.setState({ email: email });
     console.log("this is email in app", this.state.email)
-    
+   
   }
 
   componentDidMount() {
+  
     this.authListener();
   }
 
@@ -33,27 +34,30 @@ class App extends Component {
     fire.auth().signOut();
 }
   authListener() {
+          
+
     fire.auth().onAuthStateChanged(user => {
       console.log(user);
       if (user) {
         this.setState({ user });
-        
+      
         localStorage.setItem("user", user.uid);
+       
       } else {
         this.setState({ user: null });
         localStorage.removeItem("user");
       }
+  
     });
+ 
   }
 
   render() {
     return (
       <div className="App">
         <Header />
-        <div>{this.state.user ? <Input /> : <Login passEmail ={this.passEmail} />}</div>
-        <button onClick={this.logout}>Logout</button>
-        <List passingEmail={this.passEmail}></List>
-       
+        <div>{this.state.user ? <Input passingEmail = {this.state.email}/> : <Login passEmail ={this.passEmail} />}</div>
+        <button className = "logout"    visibilitySwitch = {{style : {visibility: "hidden"}}} onClick={this.logout}>Logout</button>
       </div>
     );
   }

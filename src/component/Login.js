@@ -33,9 +33,12 @@ class Login extends Component {
       });
       let email = this.state.email 
       this.props.passEmail(email)
+
+      
   }
 
   signup(e) {
+   
     e.preventDefault();
     fire
       .auth()
