@@ -13,13 +13,7 @@ const firebaseConfig = {
  
   const fire = firebase.initializeApp(firebaseConfig);
 
-  var database = firebase.database()
-  var ref = database.ref('drebin')
+  
 
-  var data = {
-    name: "isesse",
-    level: 3
-  }
-
-  ref.push(data)
+ 
 export default fire;

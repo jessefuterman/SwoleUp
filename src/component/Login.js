@@ -10,7 +10,8 @@ class Login extends Component {
     this.signup = this.signup.bind(this);
     this.state = {
       email: "",
-      password: ""
+      password: "",
+    
     };
   }
 
@@ -33,6 +34,7 @@ class Login extends Component {
       });
       let email = this.state.email 
       this.props.passEmail(email)
+      
 
       
   }

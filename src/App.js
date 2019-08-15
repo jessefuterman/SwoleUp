@@ -16,7 +16,7 @@ class App extends Component {
       items: [],
       user: null,
       email: "",
-      visibleswitch: false,
+      
       visible: ""
 
     };
@@ -25,35 +25,35 @@ class App extends Component {
   passEmail = (email) => {
     this.setState({ email: email });
     console.log("this is email in app", this.state.email)
-    
- 
+
    
   }
 
+ 
+
   componentDidMount() {
-    
+  
     this.authListener();
   }
 
   logout = () => {
-  //YOU NEED TO PASS PROPS BACK TO LOG IN TO MAKE THIS WORK BETTER
-  
-    // if(this.state.visibleswitch === false){
-    //   this.setState({ visible : "hidden"});  
-    // }
+
+  this.setState({visible: "hidden"})
     fire.auth().signOut();
 }
   authListener() {
    
-    
+   
 
     fire.auth().onAuthStateChanged(user => {
       console.log(user);
+      
+    
       if (user) {
         this.setState({ user });
-      
+        this.setState({visible: "visible"})
         localStorage.setItem("user", user.uid);
-       
+         
       } else {
         this.setState({ user: null });
         localStorage.removeItem("user");
@@ -68,7 +68,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <div>{this.state.user ? <Input passingEmail = {this.state.email}/> : <Login passEmail ={this.passEmail} />}</div>
+        <div>{this.state.user ? <Input passingEmail = {this.state.email} passSwitchTwo = {this.passEmail}/> : <Login passEmail ={this.passEmail} passSwitch = {this.passSwitch} />}</div>
         <button className = "logout"    style = {{visibility: "" + this.state.visible}} onClick={this.logout}>Logout</button>
       </div>
     );

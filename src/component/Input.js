@@ -46,7 +46,8 @@ class Input extends Component {
         PersonalWorkout: [""]
       },
       selectedOption: "",
-      hiddenpercentagecopy: 0
+      hiddenpercentagecopy: 0,
+     visible: "visible"
     };
   }
   
@@ -62,6 +63,8 @@ class Input extends Component {
   
 
   triggerWorkout = () => {
+   let passSwitchTwo = this.state.visible
+    this.props.passSwitchTwo(passSwitchTwo)
     console.log(this.props.passingEmail, "passing email in input")
     if (this.state.selectedOption === "Nathan Micay") {
       this.personalWorkout();

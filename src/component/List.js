@@ -224,7 +224,7 @@ class List extends Component {
     }
     ///
     if (this.state.switch === false) {
-     
+      setTimeout(() => this.setState({ switch: true }), 1000);
     }
 
     if (this.state.lvl2switch === false) {
@@ -250,19 +250,17 @@ class List extends Component {
   submitScore = () => {
     //level1
     if (this.state.hiddenpercentage >= 375) {
-      
     } else if (this.state.hiddenpercentage >= 250) {
       this.passEmail();
-        console.log("does this get to this.state.titles[2");
-        let data = {
-          levelTitle: this.state.titles[2],
-          name: this.props.passingEmail,
-          experience: this.state.hiddenpercentage
-        };
-        let database = Firebase.database();
-        let ref = database.ref("leveltitle");
-        ref.push(data);
-      
+      console.log("does this get to this.state.titles[2");
+      let data = {
+        levelTitle: this.state.titles[2],
+        name: this.props.passingEmail,
+        experience: this.state.hiddenpercentage
+      };
+      let database = Firebase.database();
+      let ref = database.ref("UserInfo");
+      ref.push(data);
     } else if (this.state.hiddenpercentage >= 125) {
       console.log("are we getting inside level 2 conditional");
       // this.passEmail();
@@ -272,7 +270,7 @@ class List extends Component {
         experience: this.state.hiddenpercentage
       };
       let database = Firebase.database();
-      let ref = database.ref("leveltitle");
+      let ref = database.ref("UserInfo");
       ref.push(data);
       console.log(data, "firebase data level 2");
     } else if (this.state.hiddenpercentage >= 0) {
@@ -285,10 +283,10 @@ class List extends Component {
       };
 
       let database = Firebase.database();
-      let ref = database.ref("leveltitle");
+      let ref = database.ref("Userinfo");
       ref.push(data);
       console.log(data, "this is firebase data");
-    } 
+    }
 
     //level2
   };
