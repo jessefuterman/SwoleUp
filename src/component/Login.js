@@ -1,6 +1,18 @@
 import React, { Component } from "react";
 // import { Link } from 'react-router-dom';
 import fire from "./fire";
+import Firebase from "firebase";
+import {
+  Button,
+  Checkbox,
+  TextInput,
+  TextArea,
+  Balloon,
+  Table,
+  Progress,
+  Icon,
+  Sprite
+} from "nes-react";
 
 class Login extends Component {
   constructor(props) {
@@ -11,6 +23,8 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
+    
+      userEmail:""
     
     };
   }
@@ -23,7 +37,7 @@ class Login extends Component {
   }
 
   login(e) {
-    
+    this.getScores()
     e.preventDefault();
     fire
       .auth()
@@ -40,7 +54,7 @@ class Login extends Component {
   }
 
   signup(e) {
-   
+   this.getScores()
     e.preventDefault();
     fire
       .auth()
@@ -53,6 +67,44 @@ class Login extends Component {
         console.log(error);
       });
   }
+  getScores = () => {
+    let database = Firebase.database();
+    var ref = database.ref("Userinfo");
+    ref.on("value", this.getData, this.errData);
+
+  };
+
+
+
+  getData = (data) => {
+    let scores = data.val();
+    let keys = Object.keys(scores);
+    let k = keys;
+   
+    let names = scores.name;
+  
+    for (let i = 0; i < keys.length; i++) {
+       k = keys[i];
+    
+      names = scores[k].name;
+     
+      
+      
+    }
+    this.setState({ userEmail: names });
+    console.log(names, "we in log-in")
+    
+   
+    //passing firebase data to parent APP and then to LIST so it can render
+  
+    let userEmail = this.state.userEmail
+    
+    this.props.fireBaseData(userEmail)
+
+  };
+  errData = err => {};
+
+  
   render() {
     return (
       <div className="col-md-6">
@@ -64,13 +116,15 @@ class Login extends Component {
               onChange={this.handleChange}
               type="email"
               name="email"
-              class="form-control"
+              
+              
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
               placeholder="Enter email"
             />
+          
             <small id="emailHelp" class="form-text text-muted">
-              We'll never share your email with anyone else.
+              
             </small>
           </div>
           <div class="form-group">
@@ -80,7 +134,7 @@ class Login extends Component {
               onChange={this.handleChange}
               type="password"
               name="password"
-              class="form-control"
+              class="form-control2"
               id="exampleInputPassword1"
               placeholder="Password"
             />

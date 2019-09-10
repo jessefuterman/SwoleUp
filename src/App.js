@@ -16,7 +16,8 @@ class App extends Component {
       items: [],
       user: null,
       email: "",
-      
+      userEmail: "",
+      userXP:0,
       visible: ""
 
     };
@@ -27,6 +28,11 @@ class App extends Component {
     console.log("this is email in app", this.state.email)
 
    
+  }
+
+  fireBaseData = ( userEmail) => {
+    this.setState({ userEmail: userEmail});
+    console.log(this.state.userEmail, "we are in app brother")
   }
 
  
@@ -68,7 +74,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <div>{this.state.user ? <Input passingEmail = {this.state.email} passSwitchTwo = {this.passEmail}/> : <Login passEmail ={this.passEmail} passSwitch = {this.passSwitch} />}</div>
+        <div>{this.state.user ? <Input passingEmail = {this.state.email} passSwitchTwo = {this.passEmail} fireBaseDataUserEmail ={this.state.userEmail}/> : <Login passEmail ={this.passEmail} fireBaseData ={this.fireBaseData} passSwitch = {this.passSwitch} />}</div>
         <button className = "logout"    style = {{visibility: "" + this.state.visible}} onClick={this.logout}>Logout</button>
       </div>
     );

@@ -3,6 +3,7 @@
   background-color: #282c34;
   height: 100vh;
   padding: 0 15px;
+
 }
 
 .Number-Animate {
@@ -19,11 +20,12 @@ visibility: visible;
  position: absolute;
  right: 0px;
  top: 0px;
+ opacity: 0.3;
  
 }
 .button {
   background: grey;
- 
+opacity: 0.4;
   width: 16px;
   height: 4vh;
   padding: 0px 0;
@@ -45,12 +47,12 @@ visibility: visible;
 
 
   .buttonTwo {
-    background: #3498db;
+    background: #289ee7;
   width: 50px;
   padding: 4px 0;
   right:420px;
   font-size: 8px;
- 
+ opacity: 0.7;
   position: fixed;
   flex-direction: column;
   display: inline-flex;
@@ -79,13 +81,12 @@ visibility: visible;
 }
 
 .App-header {
-  
+
   background-color: #282c34;
   left: 20px;
   height: 20px;
   align-items: center;
-  justify-content: space-between;
-  font-size: calc(10px + 2vmin);
+   font-size: calc(10px + 2vmin);
   color: white;
 }
 
@@ -106,8 +107,8 @@ visibility: visible;
 .Dropdown-menu {
   height: 20px;
   position: absolute;
- left: 460px;
- top: 18px;
+ left:485px;
+ top: 16px;
 }
 
 .task-list ul li {
@@ -201,4 +202,32 @@ font-size: 15px
   font-size: 50px;
   color: goldenrod;
 }
+.form-control{
 
+  position: absolute;
+
+  bottom: 350px;
+
+}
+
+.col-md-6{
+  background-color: rgb(216, 154, 154);
+position: center;
+position: initial;
+position: absolute;
+bottom: 300px;
+right:450px;
+opacity: 0.4;
+
+}
+
+.getInfo{
+  position: absolute;
+  top: 50px;
+  
+}
+.getInfoXP{
+  position: absolute;
+
+  top: 75px;
+}

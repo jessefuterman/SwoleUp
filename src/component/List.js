@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import ProgressBarExample from "./ProgressBarExample.js";
 import Modal from "react-responsive-modal";
 import Firebase from "firebase";
-// import fire from "./component/fire.js"
+//  import fire from "./component/fire.js"
 import Login from "./Login.js";
 
 import {
@@ -17,7 +17,6 @@ import {
   Icon,
   Sprite
 } from "nes-react";
-import fire from "./fire.js";
 
 // Initialize Firebase
 class List extends Component {
@@ -27,6 +26,9 @@ class List extends Component {
     this.state = {
       items: [],
       list: this.props.passItem,
+      userEmail: this.props.passingUserEmail,
+  
+      
 
       hiddenpercentage: 0,
       percentage: 0,
@@ -74,6 +76,7 @@ class List extends Component {
         "LVL 4: BIG LIFTER"
       ]
     };
+    console.log(this.state.userEmail , "in LIST FINALLY IS IT WORKIN")
   }
   onOpenModal = elem => {
     this.setState({ open: true });
@@ -213,6 +216,7 @@ class List extends Component {
   };
 
   componentDidUpdate = (prevProps, prevState) => {
+    
     if (prevState.workouts !== this.props.workouts) {
       this.setState({
         workouts: this.props.passExcerciseBicep
@@ -222,6 +226,7 @@ class List extends Component {
     if (prevProps.passItem !== this.props.passItem) {
       this.setState({ list: this.props.passItem });
     }
+   
     ///
     if (this.state.switch === false) {
       setTimeout(() => this.setState({ switch: true }), 1000);
@@ -238,44 +243,71 @@ class List extends Component {
     }
   };
 
-  // passEmail = props => {
-  //   this.setState({
-  //     email: this.props.passingEmail
-  //   });
-  //   console.log(this.props.passingEmail, "this is props passingemail");
+  componentWillMount = (prevState, prevProps) =>  { 
+
+
+    
+      this.setState({ userEmail: this.props.passingUserEmail });
+     console.log("when does it hit")
+  }
+
+  // getScores = () => {
+  //   let database = Firebase.database();
+  //   var ref = database.ref("Userinfo");
+  //   ref.on("value", this.getData, this.errData);
   // };
 
-  //firebase
+  // getData = (data) => {
+  //   let scores = data.val();
+  //   let keys = Object.keys(scores);
+  //   let k = keys;
+  //   let experience = scores.experience;
+  //   let names = scores.name;
+  
+  //   for (let i = 0; i < keys.length; i++) {
+  //      k = keys[i];
+  //     experience = scores[k].experience;
+  //     names = scores[k].name;
+     
+      
+      
+  //   }
+  //   this.setState({ userXP: this.state.userXP + experience, userEmail: names });
+  //   console.log(names, experience)
+  //   console.log(this.state.userXP, "hows it in state")
+  // };
+  // errData = err => {};
 
   submitScore = () => {
+    // this.getScores();
     //level1
     if (this.state.hiddenpercentage >= 375) {
     } else if (this.state.hiddenpercentage >= 250) {
-      this.passEmail();
-      console.log("does this get to this.state.titles[2");
+      
+
       let data = {
         levelTitle: this.state.titles[2],
         name: this.props.passingEmail,
         experience: this.state.hiddenpercentage
       };
       let database = Firebase.database();
-      let ref = database.ref("UserInfo");
+      let ref = database.ref("Userinfo");
       ref.push(data);
     } else if (this.state.hiddenpercentage >= 125) {
-      console.log("are we getting inside level 2 conditional");
-      // this.passEmail();
+  
+      
       let data = {
         levelTitle: this.state.titles[1],
         name: this.props.passingEmail,
         experience: this.state.hiddenpercentage
       };
       let database = Firebase.database();
-      let ref = database.ref("UserInfo");
+      let ref = database.ref("Userinfo");
       ref.push(data);
-      console.log(data, "firebase data level 2");
+     
     } else if (this.state.hiddenpercentage >= 0) {
-      // this.passEmail();
-      console.log("are we getting inside of conditional title");
+   
+     
       let data = {
         levelTitle: this.state.titles[0],
         name: this.props.passingEmail,
@@ -285,7 +317,7 @@ class List extends Component {
       let database = Firebase.database();
       let ref = database.ref("Userinfo");
       ref.push(data);
-      console.log(data, "this is firebase data");
+  
     }
 
     //level2
@@ -298,6 +330,8 @@ class List extends Component {
       list: del,
       switch: false
     }));
+
+    this.submitScore();
 
     //passing hidden percentage
     let hidden = this.state.hiddenpercentage;
@@ -358,6 +392,8 @@ class List extends Component {
           <h1>{this.handleExperience()}</h1>
         </div>
         <h1 className="titles"> {this.changeTitle()}</h1>
+        <li className= "getInfo">{this.state.userEmail}</li>
+        
       </div>
     );
   }
