@@ -11,7 +11,7 @@ class ProgressBarExample extends Component {
  percentage:  this.props.pass     
 
     }
-    console.log(this.props.pass, "this is my props")
+    
   }
   
 

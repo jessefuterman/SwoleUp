@@ -14,25 +14,29 @@ class App extends Component {
     super();
     this.state = {
       items: [],
-      user: null,
+      user: "",
       email: "",
       userEmail: "",
       userXP:0,
-      visible: ""
+      visible: "",
+      id:""
+
 
     };
     this.authListener = this.authListener.bind(this);
   }
   passEmail = (email) => {
     this.setState({ email: email });
-    console.log("this is email in app", this.state.email)
-
+  
    
   }
+   
+  
 
-  fireBaseData = ( userEmail) => {
-    this.setState({ userEmail: userEmail});
-    console.log(this.state.userEmail, "we are in app brother")
+  fireBaseData = (userEmail) => {
+    this.setState({ userEmail: userEmail });
+    
+   
   }
 
  
@@ -40,6 +44,7 @@ class App extends Component {
   componentDidMount() {
   
     this.authListener();
+    this.fireBaseData()
   }
 
   logout = () => {
@@ -47,25 +52,45 @@ class App extends Component {
   this.setState({visible: "hidden"})
     fire.auth().signOut();
 }
-  authListener() {
-   
-   
+  
 
+authListener() {
+  let uid = localStorage.user
+  
+  admin.auth().getUser(uid)
+  .then(function(userRecord) {
+    // See the UserRecord reference doc for the contents of userRecord.
+    console.log('Successfully fetched user data:', userRecord.toJSON());
+  })
+  .catch(function(error) {
+    console.log('Error fetching user data:', error);
+  });
+  
     fire.auth().onAuthStateChanged(user => {
-      console.log(user);
+      
       
     
       if (user) {
-        this.setState({ user });
+        this.setState({ user: user.email, id: user.uid });
         this.setState({visible: "visible"})
         localStorage.setItem("user", user.uid);
-         
+        console.log(this.state.user, this.state.id, "this is the new stuff brotherman")
+        let userId = user.uid
+        
+        
+        
+   
+       
       } else {
         this.setState({ user: null });
         localStorage.removeItem("user");
+       
       }
   
     });
+
+    
+    
  
 
   }
@@ -74,7 +99,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <div>{this.state.user ? <Input passingEmail = {this.state.email} passSwitchTwo = {this.passEmail} fireBaseDataUserEmail ={this.state.userEmail}/> : <Login passEmail ={this.passEmail} fireBaseData ={this.fireBaseData} passSwitch = {this.passSwitch} />}</div>
+        <div>{this.state.user ? <Input passingEmail = {this.state.email} passSwitchTwo = {this.passEmail} fireBaseDataUserEmail ={this.state.userEmail}/> : <Login passEmail ={this.passEmail} fireBaseData ={this.fireBaseData} passSwitch = {this.passSwitch} passId ={this.state.id} />}</div>
         <button className = "logout"    style = {{visibility: "" + this.state.visible}} onClick={this.logout}>Logout</button>
       </div>
     );

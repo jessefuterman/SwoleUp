@@ -5,6 +5,7 @@ import Modal from "react-responsive-modal";
 import Firebase from "firebase";
 //  import fire from "./component/fire.js"
 import Login from "./Login.js";
+import fire from "./fire";
 
 import {
   Button,
@@ -26,7 +27,7 @@ class List extends Component {
     this.state = {
       items: [],
       list: this.props.passItem,
-      userEmail: this.props.passingUserEmail,
+      userEmail: "",
   
       
 
@@ -76,7 +77,7 @@ class List extends Component {
         "LVL 4: BIG LIFTER"
       ]
     };
-    console.log(this.state.userEmail , "in LIST FINALLY IS IT WORKIN")
+    
   }
   onOpenModal = elem => {
     this.setState({ open: true });
@@ -225,6 +226,9 @@ class List extends Component {
 
     if (prevProps.passItem !== this.props.passItem) {
       this.setState({ list: this.props.passItem });
+    }   
+    if (prevProps.passingUserEmail!== this.props.passingUserEmail) {
+      this.setState({ userEmail: this.props.passingUserEmail });
     }
    
     ///
@@ -245,15 +249,22 @@ class List extends Component {
 
   componentWillMount = (prevState, prevProps) =>  { 
 
-
     
-      this.setState({ userEmail: this.props.passingUserEmail });
-     console.log("when does it hit")
+    
+    
+  }
+
+  componentDidMount ()  {
+    this.setState({ userEmail: this.props.passingUserEmail });
+    this.submitScore();
+   
+    
+   
   }
 
   // getScores = () => {
   //   let database = Firebase.database();
-  //   var ref = database.ref("Userinfo");
+  //   var ref = database.ref("Userinformation");
   //   ref.on("value", this.getData, this.errData);
   // };
 
@@ -263,24 +274,26 @@ class List extends Component {
   //   let k = keys;
   //   let experience = scores.experience;
   //   let names = scores.name;
+  //   let title = scores.levelTitle;
   
   //   for (let i = 0; i < keys.length; i++) {
   //      k = keys[i];
   //     experience = scores[k].experience;
   //     names = scores[k].name;
+  //     title = scores[k].levelTitle;
      
       
       
   //   }
-  //   this.setState({ userXP: this.state.userXP + experience, userEmail: names });
-  //   console.log(names, experience)
-  //   console.log(this.state.userXP, "hows it in state")
+  //   this.setState({ hiddenpercentage: this.state.hiddenpercentage + experience, userEmail: names, titles: title });
+  //   console.log(names, experience, title, "in get data")
+  //   console.log(this.state.experience, this.state.titles , "state in get data")
+  
   // };
   // errData = err => {};
 
   submitScore = () => {
-    // this.getScores();
-    //level1
+   
     if (this.state.hiddenpercentage >= 375) {
     } else if (this.state.hiddenpercentage >= 250) {
       
@@ -291,7 +304,7 @@ class List extends Component {
         experience: this.state.hiddenpercentage
       };
       let database = Firebase.database();
-      let ref = database.ref("Userinfo");
+      let ref = database.ref("Userinformation2");
       ref.push(data);
     } else if (this.state.hiddenpercentage >= 125) {
   
@@ -302,20 +315,24 @@ class List extends Component {
         experience: this.state.hiddenpercentage
       };
       let database = Firebase.database();
-      let ref = database.ref("Userinfo");
+      let ref = database.ref("Userinformation2");
+      
       ref.push(data);
+      console.log(data, "this is firebase data")
+      console.log(this.state.hiddenpercentage, "this is hidden percentage")
      
     } else if (this.state.hiddenpercentage >= 0) {
-   
+     
      
       let data = {
         levelTitle: this.state.titles[0],
         name: this.props.passingEmail,
         experience: this.state.hiddenpercentage
       };
-
+      console.log(data, "this is firebase data")
+      console.log(this.state.hiddenpercentage, "this is hidden percentage")
       let database = Firebase.database();
-      let ref = database.ref("Userinfo");
+      let ref = database.ref("Userinformation2");
       ref.push(data);
   
     }
@@ -330,8 +347,9 @@ class List extends Component {
       list: del,
       switch: false
     }));
+ this.submitScore()
 
-    this.submitScore();
+ 
 
     //passing hidden percentage
     let hidden = this.state.hiddenpercentage;
@@ -344,12 +362,12 @@ class List extends Component {
       this.setState({ lvl4switch: false });
     }
     if (this.state.hiddenpercentage === 225) {
-      this.submitScore();
+     
 
       this.setState({ lvl3switch: false });
     }
     if (this.state.hiddenpercentage === 100) {
-      this.submitScore();
+     
 
       this.setState({ lvl2switch: false });
     }

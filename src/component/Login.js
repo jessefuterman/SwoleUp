@@ -23,11 +23,13 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
-    
+      experience: 0,
+       id: "",
       userEmail:""
     
     };
   }
+
 
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value })
@@ -37,24 +39,29 @@ class Login extends Component {
   }
 
   login(e) {
-    this.getScores()
+   
     e.preventDefault();
     fire
       .auth()
       .signInWithEmailAndPassword(this.state.email, this.state.password)
-      .then(u => {})
+      .then(u => {this.getScores() 
+        
+        
+        
+       
+      })
       .catch(error => {
         console.log(error);
       });
       let email = this.state.email 
       this.props.passEmail(email)
-      
+     
 
       
   }
 
   signup(e) {
-   this.getScores()
+  
     e.preventDefault();
     fire
       .auth()
@@ -66,40 +73,58 @@ class Login extends Component {
       .catch(error => {
         console.log(error);
       });
+      // this.getScores()
   }
+  
+  
+  
+  
+  
+  
+  
   getScores = () => {
     let database = Firebase.database();
-    var ref = database.ref("Userinfo");
+    var ref = database.ref("Userinformation2");
     ref.on("value", this.getData, this.errData);
+    
 
   };
 
 
 
-  getData = (data) => {
+  getData = ( data, fireDataUid) => {
+    let uid = localStorage.user;
+   console.log(uid, "what is uid")
+   
+   
+    
     let scores = data.val();
     let keys = Object.keys(scores);
     let k = keys;
-   
+   let experience = scores.experience
+   let title = scores.title
     let names = scores.name;
   
     for (let i = 0; i < keys.length; i++) {
        k = keys[i];
     
       names = scores[k].name;
-     
+      experience = scores[k].experience;
+      
+      title = scores[k].levelTitle;
       
       
     }
-    this.setState({ userEmail: names });
-    console.log(names, "we in log-in")
-    
+    this.setState({ userEmail: names, experience: this.state.experience + experience });
+    console.log(names, experience, title,  "we in log-in")
+    console.log(this.state.experience, "this is state in login")
+    this.props.fireBaseData(names)
    
     //passing firebase data to parent APP and then to LIST so it can render
   
-    let userEmail = this.state.userEmail
     
-    this.props.fireBaseData(userEmail)
+  
+     
 
   };
   errData = err => {};

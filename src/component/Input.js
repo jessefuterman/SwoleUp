@@ -10,7 +10,7 @@ class Input extends Component {
       text: "",
       items: [],
       email: this.props.passingEmail,
-      userEmail: "" ,
+      userEmail: this.props.fireBaseDataUserEmail ,
       userXP: 0,
 
       workouts: {
@@ -122,7 +122,7 @@ class Input extends Component {
   bicepOrder = i => {
     let pushed = [];
 
-    console.log("this is pushed", pushed);
+   
 
     for (i = 0; i < this.state.workouts.Bicep.length; i++) {
       pushed.push(this.state.workouts.Bicep[i]);
@@ -246,11 +246,10 @@ class Input extends Component {
  
   };
 
-  getModifiedArray = arr => {
+  getModifiedArray = (arr) => {
      //also passing FIREBASE data here, originally from LOGIN 
-    this.setState({ items: arr, userEmail: this.props.fireBaseDataUserEmail});
-    console.log(this.state.userEmail, "we are now inside of input")
-    console.log(this.props.fireBaseDataUserEmail, "inside input prop user email")
+    this.setState({ items: arr, userEmail: this.props.fireBaseDataUserEmail });
+    
    
   };
 
@@ -260,6 +259,11 @@ class Input extends Component {
     );
   };
   
+  componentDidMount = () => {
+
+   
+    this.getModifiedArray()
+  }
 
   
 
@@ -287,7 +291,7 @@ class Input extends Component {
         </div>
 
         <List
-          passingUserEmail = {this.props.fireBaseDataUserEmail}
+          passingUserEmail = {this.props.fireBaseDataUserEmail }
           passingEmail={this.state.email}
           passingHidden={this.passingHidden}
           passItem={this.state.items}
