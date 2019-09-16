@@ -27,9 +27,8 @@ class List extends Component {
     this.state = {
       items: [],
       list: this.props.passItem,
-      userEmail: "",
-  
-      
+
+      id: this.props.passId,
 
       hiddenpercentage: 0,
       percentage: 0,
@@ -68,7 +67,7 @@ class List extends Component {
       lvl2switch: true,
       lvl3switch: true,
       lvl4switch: true,
-      email: "",
+      email: this.props.passingEmail,
 
       titles: [
         "LVL 1: LIL LIFTER",
@@ -77,7 +76,6 @@ class List extends Component {
         "LVL 4: BIG LIFTER"
       ]
     };
-    
   }
   onOpenModal = elem => {
     this.setState({ open: true });
@@ -217,7 +215,6 @@ class List extends Component {
   };
 
   componentDidUpdate = (prevProps, prevState) => {
-    
     if (prevState.workouts !== this.props.workouts) {
       this.setState({
         workouts: this.props.passExcerciseBicep
@@ -226,11 +223,13 @@ class List extends Component {
 
     if (prevProps.passItem !== this.props.passItem) {
       this.setState({ list: this.props.passItem });
-    }   
-    if (prevProps.passingUserEmail!== this.props.passingUserEmail) {
-      this.setState({ userEmail: this.props.passingUserEmail });
     }
-   
+
+    if (prevProps.passId !== this.props.passId) {
+      this.setState({ id: this.props.passId });
+      console.log(this.state.id, "does id pass to list");
+    }
+
     ///
     if (this.state.switch === false) {
       setTimeout(() => this.setState({ switch: true }), 1000);
@@ -247,94 +246,51 @@ class List extends Component {
     }
   };
 
-  componentWillMount = (prevState, prevProps) =>  { 
+  componentWillMount = (prevState, prevProps) => {};
 
-    
-    
-    
-  }
-
-  componentDidMount ()  {
-    this.setState({ userEmail: this.props.passingUserEmail });
-    this.submitScore();
-   
-    
+  componentDidMount() {
+    this.setState({ id: this.props.passId });
+    console.log(this.state.id, "does id come to list does eamil come to list");
    
   }
 
-  // getScores = () => {
-  //   let database = Firebase.database();
-  //   var ref = database.ref("Userinformation");
-  //   ref.on("value", this.getData, this.errData);
-  // };
-
-  // getData = (data) => {
-  //   let scores = data.val();
-  //   let keys = Object.keys(scores);
-  //   let k = keys;
-  //   let experience = scores.experience;
-  //   let names = scores.name;
-  //   let title = scores.levelTitle;
-  
-  //   for (let i = 0; i < keys.length; i++) {
-  //      k = keys[i];
-  //     experience = scores[k].experience;
-  //     names = scores[k].name;
-  //     title = scores[k].levelTitle;
-     
-      
-      
-  //   }
-  //   this.setState({ hiddenpercentage: this.state.hiddenpercentage + experience, userEmail: names, titles: title });
-  //   console.log(names, experience, title, "in get data")
-  //   console.log(this.state.experience, this.state.titles , "state in get data")
-  
-  // };
-  // errData = err => {};
+ 
 
   submitScore = () => {
-   
     if (this.state.hiddenpercentage >= 375) {
     } else if (this.state.hiddenpercentage >= 250) {
-      
-
       let data = {
         levelTitle: this.state.titles[2],
         name: this.props.passingEmail,
         experience: this.state.hiddenpercentage
       };
       let database = Firebase.database();
-      let ref = database.ref("Userinformation2");
+      let ref = database.ref("Userinformation3");
       ref.push(data);
     } else if (this.state.hiddenpercentage >= 125) {
-  
-      
       let data = {
         levelTitle: this.state.titles[1],
         name: this.props.passingEmail,
         experience: this.state.hiddenpercentage
       };
       let database = Firebase.database();
-      let ref = database.ref("Userinformation2");
-      
+      let ref = database.ref("Userinformation3");
+
       ref.push(data);
-      console.log(data, "this is firebase data")
-      console.log(this.state.hiddenpercentage, "this is hidden percentage")
-     
+      console.log(data, "this is firebase data");
+      console.log(this.state.hiddenpercentage, "this is hidden percentage");
     } else if (this.state.hiddenpercentage >= 0) {
-     
-     
       let data = {
         levelTitle: this.state.titles[0],
         name: this.props.passingEmail,
-        experience: this.state.hiddenpercentage
+        experience: this.state.hiddenpercentage,
+        id: this.props.passId
       };
-      console.log(data, "this is firebase data")
-      console.log(this.state.hiddenpercentage, "this is hidden percentage")
+      console.log(data, "this is firebase data");
+      console.log(this.state.hiddenpercentage, "this is hidden percentage");
       let database = Firebase.database();
-      let ref = database.ref("Userinformation2");
+      let ref = database.ref("Userinformation3");
       ref.push(data);
-  
     }
 
     //level2
@@ -347,9 +303,7 @@ class List extends Component {
       list: del,
       switch: false
     }));
- this.submitScore()
-
- 
+    this.submitScore();
 
     //passing hidden percentage
     let hidden = this.state.hiddenpercentage;
@@ -362,13 +316,9 @@ class List extends Component {
       this.setState({ lvl4switch: false });
     }
     if (this.state.hiddenpercentage === 225) {
-     
-
       this.setState({ lvl3switch: false });
     }
     if (this.state.hiddenpercentage === 100) {
-     
-
       this.setState({ lvl2switch: false });
     }
 
@@ -376,6 +326,45 @@ class List extends Component {
 
     this.props.pass(del);
   };
+
+  saveGame = () => {
+    if (this.state.hiddenpercentage >= 375) {
+    } else if (this.state.hiddenpercentage >= 250) {
+      let data = {
+        levelTitle: this.state.titles[2],
+        name: this.props.passingEmail,
+        experience: this.state.hiddenpercentage
+      };
+      let database = Firebase.database();
+      let ref = database.ref("Userinformation3");
+      ref.push(data);
+    } else if (this.state.hiddenpercentage >= 125) {
+      let data = {
+        levelTitle: this.state.titles[1],
+        name: this.props.passingEmail,
+        experience: this.state.hiddenpercentage
+      };
+      let database = Firebase.database();
+      let ref = database.ref("Userinformation3");
+
+      ref.push(data);
+      console.log(data, "this is firebase data");
+      console.log(this.state.hiddenpercentage, "this is hidden percentage");
+    } else if (this.state.hiddenpercentage >= 0) {
+      let data = {
+        levelTitle: this.state.titles[0],
+        name: this.props.passingEmail,
+        experience: this.state.hiddenpercentage,
+        id: this.props.passId
+      };
+      console.log(data, "this is firebase data");
+      console.log(this.state.hiddenpercentage, "this is hidden percentage");
+      let database = Firebase.database();
+      let ref = database.ref("SaveData");
+      ref.push(data);
+    }
+
+  }
 
   changeTitle = () => {
     if (this.state.hiddenpercentage >= 375) {
@@ -401,7 +390,10 @@ class List extends Component {
           pass={this.state.percentage}
           passHidden={this.state.hiddenpercentage}
         />
-
+        <button className ="buttonThree"  onClick={() => {
+          this.saveGame();
+         
+        }}> SAVE  GAME</button>
         <Modal open={open} onClose={this.onCloseModal} center>
           <h2 className="modal">{this.infoLogic()}</h2>
         </Modal>
@@ -410,8 +402,7 @@ class List extends Component {
           <h1>{this.handleExperience()}</h1>
         </div>
         <h1 className="titles"> {this.changeTitle()}</h1>
-        <li className= "getInfo">{this.state.userEmail}</li>
-        
+        <li className="getInfo">{this.state.email}</li>
       </div>
     );
   }

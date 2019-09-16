@@ -63,7 +63,32 @@ opacity: 0.4;
   
   transform: translateX(-50%) translateY(-50%);
   border-radius: 20px;  }
+
+
+
+
+  .buttonThree {
+    background: #d4cd3f;
+  width: 80px;
+  height: 28px;
+
+  right: 80px;
+  top: 16px;
+  font-size: 8px;
+ opacity: 0.7;
+  position: absolute;
+  flex-direction: column;
+  display: inline-flex;
+ 
+  
+  
+ 
+  
+  transform: translateX(-50%) translateY(-50%);
+  border-radius: 20px;  }
 .filler {
+
+
   background: #a00e0e;
   height: 100%;
   border-radius: inherit;

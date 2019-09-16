@@ -52,19 +52,12 @@ class App extends Component {
   this.setState({visible: "hidden"})
     fire.auth().signOut();
 }
-  
+  //ADD SAVE BUTTON IN HERE
 
 authListener() {
-  let uid = localStorage.user
+ 
   
-  admin.auth().getUser(uid)
-  .then(function(userRecord) {
-    // See the UserRecord reference doc for the contents of userRecord.
-    console.log('Successfully fetched user data:', userRecord.toJSON());
-  })
-  .catch(function(error) {
-    console.log('Error fetching user data:', error);
-  });
+ 
   
     fire.auth().onAuthStateChanged(user => {
       
@@ -99,7 +92,7 @@ authListener() {
     return (
       <div className="App">
         <Header />
-        <div>{this.state.user ? <Input passingEmail = {this.state.email} passSwitchTwo = {this.passEmail} fireBaseDataUserEmail ={this.state.userEmail}/> : <Login passEmail ={this.passEmail} fireBaseData ={this.fireBaseData} passSwitch = {this.passSwitch} passId ={this.state.id} />}</div>
+        <div>{this.state.user ? <Input passingEmail = {this.state.email} passSwitchTwo = {this.passEmail} fireBaseDataUserEmail ={this.state.userEmail} passId ={this.state.id}/> : <Login passEmail ={this.passEmail} fireBaseData ={this.fireBaseData} passSwitch = {this.passSwitch}  />}</div>
         <button className = "logout"    style = {{visibility: "" + this.state.visible}} onClick={this.logout}>Logout</button>
       </div>
     );

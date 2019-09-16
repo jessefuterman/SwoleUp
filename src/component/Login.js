@@ -24,44 +24,31 @@ class Login extends Component {
       email: "",
       password: "",
       experience: 0,
-       id: "",
-      userEmail:""
-    
+      id: "",
+      userEmail: ""
     };
   }
 
-
   handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value })
-    
-    
-    
+    this.setState({ [e.target.name]: e.target.value });
   }
 
   login(e) {
-   
     e.preventDefault();
     fire
       .auth()
       .signInWithEmailAndPassword(this.state.email, this.state.password)
-      .then(u => {this.getScores() 
-        
-        
-        
-       
+      .then(u => {
+        this.getScores();
       })
       .catch(error => {
         console.log(error);
       });
-      let email = this.state.email 
-      this.props.passEmail(email)
-     
-
-      
+    let email = this.state.email;
+    this.props.passEmail(email);
   }
 
   signup(e) {
-  
     e.preventDefault();
     fire
       .auth()
@@ -73,63 +60,46 @@ class Login extends Component {
       .catch(error => {
         console.log(error);
       });
-      // this.getScores()
+    // this.getScores()
   }
-  
-  
-  
-  
-  
-  
-  
+
   getScores = () => {
     let database = Firebase.database();
     var ref = database.ref("Userinformation2");
     ref.on("value", this.getData, this.errData);
-    
-
   };
 
-
-
-  getData = ( data, fireDataUid) => {
+  getData = (data, fireDataUid) => {
     let uid = localStorage.user;
-   console.log(uid, "what is uid")
-   
-   
-    
+    console.log(uid, "what is uid");
+
     let scores = data.val();
     let keys = Object.keys(scores);
     let k = keys;
-   let experience = scores.experience
-   let title = scores.title
+    let experience = scores.experience;
+    let title = scores.title;
     let names = scores.name;
-  
+
     for (let i = 0; i < keys.length; i++) {
-       k = keys[i];
-    
+      k = keys[i];
+
       names = scores[k].name;
       experience = scores[k].experience;
-      
-      title = scores[k].levelTitle;
-      
-      
-    }
-    this.setState({ userEmail: names, experience: this.state.experience + experience });
-    console.log(names, experience, title,  "we in log-in")
-    console.log(this.state.experience, "this is state in login")
-    this.props.fireBaseData(names)
-   
-    //passing firebase data to parent APP and then to LIST so it can render
-  
-    
-  
-     
 
+      title = scores[k].levelTitle;
+    }
+    this.setState({
+      userEmail: names,
+      experience: this.state.experience + experience
+    });
+    console.log(names, experience, title, "we in log-in");
+    console.log(this.state.experience, "this is state in login");
+    this.props.fireBaseData(names);
+
+    //passing firebase data to parent APP and then to LIST so it can render
   };
   errData = err => {};
 
-  
   render() {
     return (
       <div className="col-md-6">
@@ -141,16 +111,12 @@ class Login extends Component {
               onChange={this.handleChange}
               type="email"
               name="email"
-              
-              
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
               placeholder="Enter email"
             />
-          
-            <small id="emailHelp" class="form-text text-muted">
-              
-            </small>
+
+            <small id="emailHelp" class="form-text text-muted"></small>
           </div>
           <div class="form-group">
             <label for="exampleInputPassword1">Password</label>
