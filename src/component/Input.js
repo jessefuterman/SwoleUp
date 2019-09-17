@@ -10,8 +10,8 @@ class Input extends Component {
       text: "",
       items: [],
       email: this.props.passingEmail,
-      userEmail: this.props.fireBaseDataUserEmail ,
-      userXP: 0,
+     
+      userXp: this.props.passingXp,
       id: this.props.passId,
 
       workouts: {
@@ -249,8 +249,8 @@ class Input extends Component {
 
   getModifiedArray = (arr) => {
      //also passing FIREBASE data here, originally from LOGIN 
-    this.setState({ items: arr, userEmail: this.props.fireBaseDataUserEmail, id: this.props.passId, email: this.props.passingEmail });
-    console.log(this.state.email,  "is email gettting into input")
+    this.setState({ items: arr,  id: this.props.passId, userXp: this.props.passingXp  });
+    console.log(this.state.userXp, this.props.passingXp,  "is EXPERIENCE gettting into input")
    
   };
 
@@ -269,6 +269,7 @@ class Input extends Component {
   
 
   render() {
+    console.log(this.state.userXp, "is it passing into input?!")
    
     return (
       <div>
@@ -293,7 +294,7 @@ class Input extends Component {
 
         <List
         passId = {this.state.id}
-          passingUserEmail = {this.props.fireBaseDataUserEmail }
+         passXp = {this.state.userXp}
           passingEmail={this.state.email}
           passingHidden={this.passingHidden}
           passItem={this.state.items}

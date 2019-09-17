@@ -17,7 +17,7 @@ class App extends Component {
       user: "",
       email: "",
       userEmail: "",
-      userXP:0,
+      userXp:0,
       visible: "",
       id:""
 
@@ -30,6 +30,7 @@ class App extends Component {
   
    
   }
+ 
    
   
 
@@ -39,10 +40,16 @@ class App extends Component {
    
   }
 
+  passingXp = (Xp) => {
+    let passXp = Xp
+    this.setState({ userXp:  Xp });
+    console.log(this.state.userXp, "is it passing to app")
+  }
+
  
 
   componentDidMount() {
-  
+   
     this.authListener();
     this.fireBaseData()
   }
@@ -92,7 +99,7 @@ authListener() {
     return (
       <div className="App">
         <Header />
-        <div>{this.state.user ? <Input passingEmail = {this.state.email} passSwitchTwo = {this.passEmail} fireBaseDataUserEmail ={this.state.userEmail} passId ={this.state.id}/> : <Login passEmail ={this.passEmail} fireBaseData ={this.fireBaseData} passSwitch = {this.passSwitch}  />}</div>
+        <div>{this.state.user ? <Input  passingXp = {this.state.userXp} passingEmail = {this.state.email} passSwitchTwo = {this.passEmail} fireBaseDataUserEmail ={this.state.userEmail} passId ={this.state.id}/> : <Login passEmail ={this.passEmail}  passingXp ={this.passingXp}  fireBaseData ={this.fireBaseData} passSwitch = {this.passSwitch} passId ={this.state.id} />}</div>
         <button className = "logout"    style = {{visibility: "" + this.state.visible}} onClick={this.logout}>Logout</button>
       </div>
     );

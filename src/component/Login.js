@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 // import { Link } from 'react-router-dom';
 import fire from "./fire";
-import Firebase from "firebase";
+import {Firebase, snapshot} from "firebase";
 import {
   Button,
   Checkbox,
@@ -24,7 +24,7 @@ class Login extends Component {
       email: "",
       password: "",
       experience: 0,
-      id: "",
+      id: this.props.passId,
       userEmail: ""
     };
   }
@@ -39,11 +39,15 @@ class Login extends Component {
       .auth()
       .signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(u => {
+       
         this.getScores();
       })
       .catch(error => {
         console.log(error);
       });
+
+
+      
     let email = this.state.email;
     this.props.passEmail(email);
   }
@@ -55,6 +59,7 @@ class Login extends Component {
       .createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then(u => {})
       .then(u => {
+        this.getScores()
         console.log(u);
       })
       .catch(error => {
@@ -64,43 +69,104 @@ class Login extends Component {
   }
 
   getScores = () => {
-    let database = Firebase.database();
-    var ref = database.ref("Userinformation2");
+    let database = fire.database();
+    var ref = database.ref("SaveGameTwo");
     ref.on("value", this.getData, this.errData);
+    
+  
   };
 
-  getData = (data, fireDataUid) => {
-    let uid = localStorage.user;
-    console.log(uid, "what is uid");
 
+ 
+
+  getData = (data,  fireDataUid) => {
+    
+     let allIds = []
     let scores = data.val();
     let keys = Object.keys(scores);
     let k = keys;
     let experience = scores.experience;
     let title = scores.title;
     let names = scores.name;
+    let userId = scores.id
 
     for (let i = 0; i < keys.length; i++) {
       k = keys[i];
-
+      userId = scores[k].id
       names = scores[k].name;
       experience = scores[k].experience;
-
+      
       title = scores[k].levelTitle;
+      allIds.push(userId)
     }
-    this.setState({
-      userEmail: names,
-      experience: this.state.experience + experience
-    });
-    console.log(names, experience, title, "we in log-in");
-    console.log(this.state.experience, "this is state in login");
-    this.props.fireBaseData(names);
+   console.log(data.val(), "this is data")
+   
+   this.setState({
+    userEmail: names,
+   
+    id: this.props.passId
+  });
+  //Get the current userID
 
-    //passing firebase data to parent APP and then to LIST so it can render
+
+  console.log(this.state.id, "current user id in state")
+     console.log(allIds.find(userId => {
+      console.log("userid",userId, "this.state.id",this.state.id)
+      return userId === this.state.id 
+      }), "find data")
+   
+     
+    this.props.fireBaseData(names);
+   
+  
+    var user = fire.auth().currentUser.uid;
+   
+  
+ 
+if (user) {
+  let email = this.state.email
+ 
+
+  var usersRef = fire.database().ref("SaveGameTwo").orderByChild("name").equalTo(email);
+usersRef.once("child_added", function(snapshot) {
+ 
+
+  console.log(snapshot.child("experience").val(), "this is the experience");
+    console.log(snapshot.child("id").val(), "this is id");
+    console.log(snapshot.child("name").val(), "this is email");
+    experience =  snapshot.child("experience").val() 
+});
+let Xp = experience
+console.log(Xp, "what is this?!")
+this.props.passingXp(Xp)
+
+console.log(experience)
+this.setState({
+  
+  experience: this.state.experience + experience,
+ 
+});
+console.log(this.state.experience, "DID IT WORK OMG")
+//  let fireBaseXp = this.state.experience
+//  console.log(fireBaseXp, "what is this?!")
+// this.props.passingXp(fireBaseXp)
+
+
+} else {
+  // No user is signed in.
+}
+
+
+    
+  
+   
   };
+
+
   errData = err => {};
 
   render() {
+    
     return (
       <div className="col-md-6">
         <form>
