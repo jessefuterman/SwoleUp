@@ -13,7 +13,7 @@ class Input extends Component {
      
       userXp: this.props.passingXp,
       id: this.props.passId,
-
+      userPercentage: this.props.passingFillPercentage,
       workouts: {
         Shoulder: [
           "Overhead Press",
@@ -52,6 +52,7 @@ class Input extends Component {
       hiddenpercentagecopy: 0,
      visible: "visible"
     };
+    console.log(this.props.passingFillPercentage, "is it coming to input")
   }
   
 
@@ -249,8 +250,8 @@ class Input extends Component {
 
   getModifiedArray = (arr) => {
      //also passing FIREBASE data here, originally from LOGIN 
-    this.setState({ items: arr,  id: this.props.passId, userXp: this.props.passingXp  });
-    console.log(this.state.userXp, this.props.passingXp,  "is EXPERIENCE gettting into input")
+    this.setState({ items: arr,  id: this.props.passId, userXp: this.props.passingXp, userPercentage: this.props.passingFillPercentage  });
+    console.log(this.state.userPercentage,  "is percentage making its way to input")
    
   };
 
@@ -269,7 +270,7 @@ class Input extends Component {
   
 
   render() {
-    console.log(this.state.userXp, "is it passing into input?!")
+    console.log(this.state.userPercentage, "is fill passing into input!?")
    
     return (
       <div>
@@ -293,6 +294,7 @@ class Input extends Component {
         </div>
 
         <List
+        passingFillPercentage = {this.state.userPercentage}
         passId = {this.state.id}
          passXp = {this.state.userXp}
           passingEmail={this.state.email}

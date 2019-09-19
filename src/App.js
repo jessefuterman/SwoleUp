@@ -19,7 +19,8 @@ class App extends Component {
       userEmail: "",
       userXp:0,
       visible: "",
-      id:""
+      id:"",
+      userPercentage:0
 
 
     };
@@ -30,6 +31,12 @@ class App extends Component {
   
    
   }
+
+  // passingPercentData = (fillPercentage) => {
+  //   let fill = fillPercentage
+  //   this.setState({ usePercentage: fillPercentage });
+   
+  // }
  
    
   
@@ -40,10 +47,11 @@ class App extends Component {
    
   }
 
-  passingXp = (Xp) => {
-    let passXp = Xp
-    this.setState({ userXp:  Xp });
-    console.log(this.state.userXp, "is it passing to app")
+  passingXp = (Xp, fillPercentage) => {
+    
+    this.setState({ userXp:  Xp, userPercentage: fillPercentage });
+    console.log(this.state.userPercentage,  " FILL PERCETAGE it passing to app" )
+
   }
 
  
@@ -52,6 +60,7 @@ class App extends Component {
    
     this.authListener();
     this.fireBaseData()
+    // this.passingPercentData()
   }
 
   logout = () => {
@@ -74,7 +83,7 @@ authListener() {
         this.setState({ user: user.email, id: user.uid });
         this.setState({visible: "visible"})
         localStorage.setItem("user", user.uid);
-        console.log(this.state.user, this.state.id, "this is the new stuff brotherman")
+
         let userId = user.uid
         
         
@@ -96,10 +105,11 @@ authListener() {
   }
 
   render() {
+    
     return (
       <div className="App">
         <Header />
-        <div>{this.state.user ? <Input  passingXp = {this.state.userXp} passingEmail = {this.state.email} passSwitchTwo = {this.passEmail} fireBaseDataUserEmail ={this.state.userEmail} passId ={this.state.id}/> : <Login passEmail ={this.passEmail}  passingXp ={this.passingXp}  fireBaseData ={this.fireBaseData} passSwitch = {this.passSwitch} passId ={this.state.id} />}</div>
+        <div>{this.state.user ? <Input  passingXp = {this.state.userXp}  passingFillPercentage = {this.state.userPercentage} passingEmail = {this.state.email} passSwitchTwo = {this.passEmail} fireBaseDataUserEmail ={this.state.userEmail} passId ={this.state.id}/> : <Login passEmail ={this.passEmail}  passingXp ={this.passingXp}   fireBaseData ={this.fireBaseData} passSwitch = {this.passSwitch} passId ={this.state.id} />}</div>
         <button className = "logout"    style = {{visibility: "" + this.state.visible}} onClick={this.logout}>Logout</button>
       </div>
     );

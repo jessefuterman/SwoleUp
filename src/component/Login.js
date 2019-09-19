@@ -57,9 +57,9 @@ class Login extends Component {
     fire
       .auth()
       .createUserWithEmailAndPassword(this.state.email, this.state.password)
-      .then(u => {})
+      .then(u => {this.getScores()})
       .then(u => {
-        this.getScores()
+        
         console.log(u);
       })
       .catch(error => {
@@ -68,9 +68,22 @@ class Login extends Component {
     // this.getScores()
   }
 
+
+
+  saveData = () => {
+    let data = {
+     
+      name: this.state.email
+    };
+    let database = Firebase.database();
+    let ref = database.ref("SaveGameThree");
+    ref.push(data);
+
+
+  }
   getScores = () => {
     let database = fire.database();
-    var ref = database.ref("SaveGameTwo");
+    var ref = database.ref("SaveGameThree");
     ref.on("value", this.getData, this.errData);
     
   
@@ -99,7 +112,7 @@ class Login extends Component {
       title = scores[k].levelTitle;
       allIds.push(userId)
     }
-   console.log(data.val(), "this is data")
+  
    
    this.setState({
     userEmail: names,
@@ -109,11 +122,11 @@ class Login extends Component {
   //Get the current userID
 
 
-  console.log(this.state.id, "current user id in state")
-     console.log(allIds.find(userId => {
-      console.log("userid",userId, "this.state.id",this.state.id)
-      return userId === this.state.id 
-      }), "find data")
+  // console.log(this.state.id, "current user id in state")
+  //    console.log(allIds.find(userId => {
+  //     console.log("userid",userId, "this.state.id",this.state.id)
+  //     return userId === this.state.id 
+  //     }), "find data")
    
      
     this.props.fireBaseData(names);
@@ -126,27 +139,30 @@ class Login extends Component {
 if (user) {
   let email = this.state.email
  
-
-  var usersRef = fire.database().ref("SaveGameTwo").orderByChild("name").equalTo(email);
-usersRef.once("child_added", function(snapshot) {
+let percentage
+  var usersRef = fire.database().ref("SaveGameThree").orderByChild("name").equalTo(email);
+usersRef.limitToLast(1).on("child_added", function(snapshot) {
  
 
   console.log(snapshot.child("experience").val(), "this is the experience");
-    console.log(snapshot.child("id").val(), "this is id");
-    console.log(snapshot.child("name").val(), "this is email");
-    experience =  snapshot.child("experience").val() 
+    // console.log(snapshot.child("id").val(), "this is id");
+    // console.log(snapshot.child("name").val(), "this is email");
+    // console.log(snapshot.child("percentage").val(), "this is perentage");
+    experience =  snapshot.child("experience").val()
+    percentage = snapshot.child("percentage").val()
 });
-let Xp = experience
-console.log(Xp, "what is this?!")
-this.props.passingXp(Xp)
+let fillPercentage = percentage
 
-console.log(experience)
+let Xp = experience
+// this.props.passingPercentData(fillPercentage)
+this.props.passingXp(Xp, fillPercentage)
+
+console.log(fillPercentage, "is fill coming in from firebase")
 this.setState({
   
   experience: this.state.experience + experience,
  
 });
-console.log(this.state.experience, "DID IT WORK OMG")
 //  let fireBaseXp = this.state.experience
 //  console.log(fireBaseXp, "what is this?!")
 // this.props.passingXp(fireBaseXp)

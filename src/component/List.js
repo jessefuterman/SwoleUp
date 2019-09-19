@@ -31,7 +31,7 @@ class List extends Component {
       id: this.props.passId,
 
       hiddenpercentage: this.props.passXp,
-      percentage: 0,
+      percentage: this.props.passingFillPercentage,
       open: false,
       modalText: {
         Bicep: [
@@ -63,6 +63,7 @@ class List extends Component {
       },
       elem: "",
       workouts: this.props.passworkouts,
+      savingSwitch: true,
       switch: true,
       lvl2switch: true,
       lvl3switch: true,
@@ -76,7 +77,6 @@ class List extends Component {
         "LVL 4: BIG LIFTER"
       ]
     };
-    console.log(this.state.hiddenpercentage, "DID IT GET TO HIDDEN PERCENTGE?!/")
   }
   onOpenModal = elem => {
     this.setState({ open: true });
@@ -213,6 +213,14 @@ class List extends Component {
         </h1>
       );
     }
+    if(this.state.savingSwitch === false){
+      return (
+        <h1 className="levelup">
+          
+          ...SAVING...
+        </h1>
+      )
+    }
   };
 
   componentDidUpdate = (prevProps, prevState) => {
@@ -228,12 +236,15 @@ class List extends Component {
 
     if (prevProps.passId !== this.props.passId) {
       this.setState({ id: this.props.passId });
-      console.log(this.state.id, "does id pass to list");
     }
 
    
 
     ///
+
+    if(this.state.savingSwitch === false){
+      setTimeout(() => this.setState({ savingSwitch: true }), 1250);
+    }
     if (this.state.switch === false) {
       setTimeout(() => this.setState({ switch: true }), 1000);
     }
@@ -252,8 +263,8 @@ class List extends Component {
   componentWillMount = (prevState, prevProps) => {};
 
   componentDidMount() {
-    this.setState({ id: this.props.passId , hiddenpercentage: this.state.hiddenpercentage + this.props.passXp});
-    console.log(this.state.hiddenpercentage,  this.props.passXp, "does it fill hidden");
+    
+    this.setState({ id: this.props.passId , hiddenpercentage: this.props.passXp, percentage: this.props.passingFillPercentage});
    
   }
 
@@ -332,44 +343,48 @@ class List extends Component {
   };
 
   saveGame = () => {
+    this.setState({ savingSwitch: false });
+    this.handleLevelup()
     if (this.state.hiddenpercentage >= 375) {
-    } else if (this.state.hiddenpercentage >= 250) {
+    } else if (this.state.hiddenpercentage >= 225) {
       let data = {
         levelTitle: this.state.titles[2],
         name: this.props.passingEmail,
         experience: this.state.hiddenpercentage,
-        id: this.props.passId
+        id: this.props.passId,
+        percentage: this.state.percentage
       };
       let database = Firebase.database();
-      let ref = database.ref("SaveGameTwo");
+      let ref = database.ref("SaveGameThree");
       ref.push(data);
-    } else if (this.state.hiddenpercentage >= 125) {
+    } else if (this.state.hiddenpercentage >= 25) {
       let data = {
         levelTitle: this.state.titles[1],
         name: this.props.passingEmail,
         experience: this.state.hiddenpercentage,
-        id: this.props.passId
+        id: this.props.passId,
+        percentage: this.state.percentage
       };
       let database = Firebase.database();
-      let ref = database.ref("SaveGameTwo");
+      let ref = database.ref("SaveGameThree");
 
       ref.push(data);
-      console.log(data, "this is firebase data");
-      console.log(this.state.hiddenpercentage, "this is hidden percentage");
+     
+      
     } else if (this.state.hiddenpercentage >= 0) {
       let data = {
         levelTitle: this.state.titles[0],
         name: this.props.passingEmail,
         experience: this.state.hiddenpercentage,
-        id: this.props.passId
+        id: this.props.passId,
+        percentage: this.state.percentage
       };
-      console.log(data, "this is firebase data");
-      console.log(this.state.hiddenpercentage, "this is hidden percentage");
+
       let database = Firebase.database();
-      let ref = database.ref("SaveGameTwo");
+      let ref = database.ref("SaveGameThree");
       ref.push(data);
     }
-
+    
   }
 
   changeTitle = () => {
@@ -408,7 +423,8 @@ class List extends Component {
           <h1>{this.handleExperience()}</h1>
         </div>
         <h1 className="titles"> {this.changeTitle()}</h1>
-        <li className="getInfo">{this.state.email}</li>
+        <li className="getInfo"> USER: {this.state.email}</li>
+        <li className="getInfoXP"> XP: {this.state.hiddenpercentage}</li>
       </div>
     );
   }

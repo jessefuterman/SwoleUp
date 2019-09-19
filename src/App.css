@@ -248,11 +248,14 @@ opacity: 0.4;
 
 .getInfo{
   position: absolute;
-  top: 50px;
+  top: 50px; 
+  color: rgb(223, 64, 90);
+  left: -10px;
   
 }
 .getInfoXP{
   position: absolute;
-
+ left: -10px;
+ color: rgb(219, 73, 97);
   top: 75px;
 }
