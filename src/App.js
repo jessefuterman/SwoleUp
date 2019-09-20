@@ -50,7 +50,7 @@ class App extends Component {
   passingXp = (Xp, fillPercentage) => {
     
     this.setState({ userXp:  Xp, userPercentage: fillPercentage });
-    console.log(this.state.userPercentage,  " FILL PERCETAGE it passing to app" )
+    console.log(this.state.userPercentage,  " FILL PERCETAGE is passing to app" )
 
   }
 

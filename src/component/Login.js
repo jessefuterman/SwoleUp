@@ -57,7 +57,7 @@ class Login extends Component {
     fire
       .auth()
       .createUserWithEmailAndPassword(this.state.email, this.state.password)
-      .then(u => {this.getScores()})
+      .then(u => {this.saveData()})
       .then(u => {
         
         console.log(u);
@@ -72,6 +72,14 @@ class Login extends Component {
 
   saveData = () => {
     let data = {
+      levelTitle: this.state.titles[0],
+    
+      experience: 0,
+ 
+      percentage: 0,
+  
+      id: this.props.passId,
+   
      
       name: this.state.email
     };
